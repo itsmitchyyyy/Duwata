@@ -1,0 +1,66 @@
+@media screen and (max-width: 768px) {
+    .edit-profile {
+        width: 100%;
+        height: 1000px;
+        padding: 10px;
+    }
+}
+.outer-notification{
+    display: flex;
+    flex-direction: column;
+
+}
+.head-notification {
+    padding: 1px;
+    color:white;
+    background-color: #185A56;
+    text-align: center;
+    border-radius: 20px;
+    vertical-align: middle;
+}
+.body-notification {
+    position: relative;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: #474747;
+}
+.back{
+    float: left;
+    cursor: pointer;
+    color: white;
+}
+.back i{
+    color: white;
+    padding-left: 10px;
+}
+
+.post {
+    position: relative;
+    padding-left: 31px;
+    padding-top: 20px;
+    z-index: 2;
+    border-bottom: 1px solid silver;
+}
+.circle {
+    background-color: #fff;
+    color: #4071a3;
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    border: 2px #4071a3 solid;
+    box-shadow: 0 0 0 3px #fff;
+}
+.post p {
+    margin-top: 0;
+    padding: 0 15px;
+}
+.time {
+    left: 16px;
+    position: relative;
+    font-size: 12px;
+    display: block;
+    line-height: 1;
+}

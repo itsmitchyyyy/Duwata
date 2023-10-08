@@ -1,0 +1,84 @@
+.bookingTime, .date, .timeSched{
+			font-weight:bold;
+		}
+		.save{
+			width:70%;
+			border:1px solid #0C2FE7;
+		}
+		.column1{
+			width: 50%;
+			height:100px;
+			float:left;
+		}
+		.column2{
+			width: 50%;
+			height:100px;
+			float:left;
+			display: flex;
+			justify-content: flex-end;
+		}
+		.date{
+			box-shadow: 5px 8px 6px #888888;
+
+		}
+		.date, .save{
+			padding:18px;
+			border-radius:15px;
+			background-color:#185A56C7;
+			color:white;
+			font-weight:bold;
+		}
+		.addTime{
+			padding:0;
+			border:0;
+		}
+		
+		@media screen and (max-width: 768px){
+			  .edit-profile {
+				width: 100%;
+				height: 1000px;
+				padding: 10px;
+			  }
+		}
+.clock {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    padding: 20px;
+	background-color: #333;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#time-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.time-input {
+    margin-right: 20px;
+}
+
+.timeSelect {
+    padding: 5px;
+    font-size: 1rem;
+    border: none;
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+}
+
+#set-time-button {
+    padding: 5px 15px;
+    font-size: 1rem;
+    background-color: #00ff00;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#set-time-button:hover {
+    background-color: #00cc00;
+}
