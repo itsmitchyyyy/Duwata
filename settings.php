@@ -1,4 +1,14 @@
 <?php
+
+require('dbconn.php');
+
+$ID = $_GET['userid'];
+$fetch = "SELECT * FROM users WHERE userid={$ID}";
+$result = mysqli_query($conn, $fetch);
+$row = mysqli_num_rows($result);
+
+
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -21,7 +31,7 @@
         <div class="col">
           <h2>Edit Profile</h2>
           <div class="arrow">
-            <a href="home.php"><i class="bi bi-arrow-left-short"></i></a>
+          <a href="home.php?userid=<?php echo $ID; ?>"><i class="bi bi-arrow-left-short"></i></a>
           </div>
           <form>
            <div class="edit-profile1">
@@ -32,20 +42,20 @@
             </label>
             <div class="changes">
               <div class="ic d-flex justify-content-start ">
-                <a href="changename.html"><i class="bi bi-pencil-fill"></i>Change Name</a>
+              <a href="changename.php?userid=<?php echo $ID; ?>"><i class="bi bi-pencil-fill"></i>Change Name</a>
               </div>
               <span></span>
               <div class="d-flex justify-content-start">
-                <a href="changemail.html"><i class="bi bi-envelope-fill"></i>Change Email</a>
+              <a href="changemail.php?userid=<?php echo $ID; ?>"><i class="bi bi-envelope-fill"></i>Change Email</a>
               </div>
               <div class="d-flex justify-content-start">
-                <a href="changepass.html"><i class="bi bi-shield-lock-fill"></i>Change Password</a>
+              <a href="changepass.php?userid=<?php echo $ID; ?>"><i class="bi bi-shield-lock-fill"></i>Change Password</a>
               </div>
               <div class="d-flex justify-content-start">
-                <a href="changeloc.html"><i class="bi bi-geo-alt-fill"></i>Change Location</a>
+              <a href="changeloc.php?userid=<?php echo $ID; ?>"><i class="bi bi-geo-alt-fill"></i>Change Location</a>
               </div>
             </div><br><br><br><br><br><br>
-                  <input type="submit" value="Save">
+                  
           </form>
         </div>
       </div>

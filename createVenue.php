@@ -20,18 +20,18 @@
         <div class="edit-profile row">
           <div class="col">
               <div class="arrow1">
-                <a href="home.php"><i class="bi bi-arrow-left-short"></i></a>
+                <a href="home.php?userid=<?php echo $ID; ?>"><i class="bi bi-arrow-left-short"></i></a>
                 </div>
                 <h1>Create Venue</h1>
-                <form>
-                  <input class="venueInfo" type="text" placeholder="Gym Name" required><br><br>
-                  <input class="venueInfo" type="text" placeholder="Location" required><br><br>
-                  <input class="venueInfo" type="text" placeholder="Contact Person" required><br><br>
-                  <input class="venueInfo" type="number" placeholder="Contact No" required><br><br>
-                  <input class="venueInfo" type="email" placeholder="Email" required><br><br>
-                  <input class="venueInfo" type="text" placeholder="Sports" required><br><br>
-                  <input class="venueInfo" type="number" placeholder="Price Rate" required><br><br>
-                  <textarea rows="5" class="venueInfo1" type="text"  placeholder="Rules and Regulation" required></textarea>
+                <form method="POST" action="createvenueback.php">
+                  <input class="venueInfo" type="text" name="gym_name" placeholder="Gym Name" required><br><br>
+                  <input class="venueInfo" type="text" name="gym_location" placeholder="Location" required><br><br>
+                  <input class="venueInfo" type="text" name="gym_contactperson" placeholder="Contact Person" required><br><br>
+                  <input class="venueInfo" type="number" name="gym_contactnumber" placeholder="Contact No" required><br><br>
+                  <input class="venueInfo" type="email" name="gym_email" placeholder="Email" required><br><br>
+                  <input class="venueInfo" type="text" name="gym_sports" placeholder="Sports" required><br><br>
+                  <input class="venueInfo" type="number" name="gym_price" placeholder="Price Rate" required><br><br>
+                  <textarea rows="5" class="venueInfo1" type="text" name="gym_rules" placeholder="Rules and Regulation" required></textarea>
                   <div id="column">
                     <label id="addPhotoLabel">Add Photo</label><br>
                       <div class="file-input-container">
@@ -47,8 +47,9 @@
                         <input type="file" id="minimapInput" accept="image/*">	
                       </div><br><br>
                     </div>
+                    <button class="confirmCreateVenue">Confirm</button>
                 </form>
-                <button class="confirmCreateVenue">Confirm</button>
+                
           </div>
         </div>
      </div>

@@ -1,4 +1,11 @@
 <?php
+
+if(isset($_GET['authentication'])) {
+  $authStatus = $_GET['authentication'];
+} else {
+  $authStatus = '';
+}
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -21,12 +28,12 @@
           <div class="col">
             <div class="center">
                 <h1>Login</h1>
-                <form>
+                <form method="POST" action="authentication.php">
                   <div class="txt_field">
-                    <input type="text" placeholder="Username" required>
+                    <input type="text" name="user_email" placeholder="Username" required>
                   </div><br>
                   <div class="txt_field">
-                    <input type="password" placeholder="Password" required>
+                    <input type="password"  name="user_password" placeholder="Password" required>
                   </div><br>
                   <div class="me">
                       <input type="checkbox" checked="checked" name="remember"> Remember me

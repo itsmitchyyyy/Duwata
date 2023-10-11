@@ -1,4 +1,14 @@
 <?php
+
+require('dbconn.php');
+
+$ID = $_GET['userid'];
+$fetch = "SELECT * FROM users WHERE userid={$ID}";
+$result = mysqli_query($conn, $fetch);
+$row = mysqli_num_rows($result);
+
+
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -21,35 +31,35 @@
           <div class="col">
            <div class="center">
             <div class="arrow1">
-            <a href="settings.php"><i class="bi bi-arrow-left-short"></i></a>
+            <a href="settings.php?userid=<?php echo $ID; ?>"><i class="bi bi-arrow-left-short"></i></a>
             </div>
             <h1>CHANGE NAME</h1>
-            <form>
+            <?php 
+		
+                   if($row > 0) {
+                    while($row = mysqli_fetch_array($result)) {	 
+              ?>
+            <form method="POST" action="changenameback.php?userid=<?php echo $ID ?>">
                 <div class="txt_field">
-            <input type="text" required>
+            <input type="text" name="user_firstname" value="<?php echo $row['user_firstname']?>" required>
             <span></span>
+      
             <label>First Name:</label>
             </div>
             <div class="txt_field">
-                <input type="text" required>
+                <input type="text" name="user_middlename" value="<?php echo $row['user_middlename']?>" required>
                 <span></span>
                 <label>Middle Name:</label>
               </div>
               <div class="txt_field">
-                <input type="text" required>
+                <input type="text" name="user_lastname" value="<?php echo $row['user_lastname']?>" required>
                 <span></span>
                 <label>Last Name</label>
               </div>
-              <div class="txt_field">
-                <input type="password" required>
-                <span></span>
-                <label>Password</label>
-              </div>
-              <div class="txt_field">
-                <input type="password" required>
-                <span></span>
-                <label>Confirm Password</label>
-              </div>
+              <?php
+		
+							}		}
+					    ?>
               <div class="save-btn">
               <input type="submit" value="Save">
               </div>

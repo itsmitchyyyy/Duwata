@@ -1,4 +1,12 @@
 <?php
+
+require('dbconn.php');
+
+$ID = $_GET['userid'];
+$fetch = "SELECT * FROM users WHERE userid={$ID}";
+$result = mysqli_query($conn, $fetch);
+$row = mysqli_num_rows($result);
+
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +41,7 @@
         <!-- Sidebar -->
         <div class="bg-white border" id="sidebar-wrapper">
             <div class="setting d-flex justify-content-end">
-                <a href="settings.html"><img src="images/setting.png"></a>
+            <a href="settings.php?userid=<?php echo $ID; ?>"><img src="images/setting.png"></a>
             </div>
             <div class="sidebar-heading d-flex justify-content-center align-items-center">
                 <div>
@@ -43,49 +51,60 @@
 
             <!--sidebar Content -->
             <div class="list-group">
-                <div class="d-flex justify-content-between align-items-center border-top">
-                    <div class="mt-4 ms-4">
-                    <small for="inputFname" class="list-group">Name:</small>
-                    <label class="fw-bold" id="">Jezel T. lahoylahoy</label>
-                    </div>         
-                </div>    
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="mt-4 ms-4">
-                    <small for="inputFname" class="list-group">Gender:</small>
-                    <label class="fw-bold" id="">Female</label>
-                    </div>          
-                </div>   
+									<?php 
+		
+							if($row > 0) {
+							while($row = mysqli_fetch_array($result)) {	 
+							
+							
+					?>
+					<div class="d-flex justify-content-between align-items-center border-top">
+						<div class="mt-4 ms-4">
+						<small for="inputFname" class="list-group" value="<?php echo $row['user_firstname']?>">Name:</small>
+							<label class="fw-bold" for="<?php echo $row['user_firstname'];?>"><?php echo $row['user_firstname']?></label>
+						</div>         
+					</div>    
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="mt-4 ms-4">
+						<small for="inputFname" class="list-group" value="<?php echo $row['user_gender']?>">Gender:</small>
+						<label class="fw-bold" for="<?php echo $row['user_gender'];?>"><?php echo $row['user_gender']?></label>
+						</div>          
+					</div>   
 
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="mt-4 ms-4">
-                    <small for="inputFname" class="list-group">Mobile Number:</small>
-                    <label class="fw-bold" id="">09123456789</label>
-                    </div>          
-                </div>   
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="mt-4 ms-4">
-                    <small for="inputFname" class="list-group">Email:</small>
-                    <label class="fw-bold" id="">lahoylahoy.jezel18@gmail.com</label>
-                    </div>  
-                </div>   
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="mt-4 ms-4">
+						<small for="inputFname" class="list-group" value="<?php echo $row['user_phonenumber']?>">Mobile Number:</small>
+						<label class="fw-bold" for="<?php echo $row['user_phonenumber'];?>"><?php echo $row['user_phonenumber']?></label>
+						</div>          
+					</div>   
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="mt-4 ms-4">
+						<small for="inputFname" class="list-group" value="<?php echo $row['user_email']?>">Email:</small>
+						<label class="fw-bold" for="<?php echo $row['user_email']; ?>"><?php echo $row['user_email']?></label>
+						</div>         
+					</div>   
 
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="mt-4 ms-4">
-                    <small for="inputFname" class="list-group">Birth Date:</small>
-                    <label class="fw-bold" id="">12/04/2000</label>
-                    </div>          
-                </div>   
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="mt-4 ms-4">
+						<small for="inputFname" class="list-group" value="<?php echo $row['user_birthdate']?>">Birth Date:</small>
+						<label class="fw-bold" for="<?php echo $row['user_birthdate']; ?>"><?php echo $row['user_birthdate']?> </label>
+						</div>          
+					</div>   
 
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="mt-4 ms-4">
-                    <small for="inputFname" class="list-group">Address:</small>
-                    <label class="fw-bold" id="">Peir 3</label>
-                    </div>         
-                </div>     
-                <a href="#" class="mt-4 ms-4 text-danger fw-bold"><i
-                        class="fas fa-power-off me-2 mb-3"></i>Logout</a>
-            </div>
-        </div>
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="mt-4 ms-4">
+						<small for="inputFname" class="list-group" value="<?php echo $row ['user_address']?>">Address:</small>
+						<label class="fw-bold" for="<?php echo $row['user_address']; ?>"><?php echo $row['user_address']?></label>
+						</div>         
+					</div> 
+					<?php
+		
+							}		}
+					?>
+	                <a href="login.php" class="mt-4 ms-4 text-danger fw-bold"> 
+                    <iclass="fas fa-power-off me-2 mb-3"></i>Logout</a>
+				</div>
+			</div>
         <!-- /#sidebar-wrapper -->
             
         <!-- Page Content -->
@@ -104,7 +123,7 @@
 				<div class="edit-profile row">
 					<div class="col">
 						<br style="line-height:6">
-						<a href="createVenue.html"class="aHREF">
+						<a href="createVenue.php"class="aHREF">
 							<div class="gymBox">
                                 <i id="addGymIcon" class="bi bi-plus-circle"></i>	
 							<br><br>

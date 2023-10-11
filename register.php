@@ -22,33 +22,34 @@
             <div class="center">
                 <h1>Register</h1>
                 <h3>Enter your personal informations</h3>
-                <form>
-                  <div class="txt_field">
-                    <input type="text" placeholder="Firstname" required>
-                  </div><br>
-                  <div class="txt_field">
-                    <input type="text" placeholder="Lastname" required>
-                  </div><br>
-                  <div class="txt_field">
-                      <input type="text" placeholder="Email" required>
-                    </div><br>
-                    <div class="txt_field">
-                      <input type="text" placeholder="Gender" required>
-                    </div><br>
-                    <div class="txt_field">
-                      <input type="text" placeholder="Number" required>
-                    </div><br>
-                    <div class="txt_field">
-                      <input type="date" placeholder="" required>
-                    </div><br>
-                     
-                    <div id="column">
-                      <label id="addPhotoLabel">Valid ID</label><br>
-                        <div class="file-input-container">
-                          <i id="addPhoto" class="bi bi-plus-square"></i>
-                          <input type="file" id="validinput"><br><br>
-                        </div>
-                    </div>
+                <form method="POST" action="registerback.php">
+            <div class="txt_field">
+              <input type="text" name="user_firstname" placeholder="FirstName" required>
+            </div><br>
+            <div class="txt_field">
+              <input type="text"  name="user_middlename" placeholder="MiddleName" required>
+            </div><br>
+            <div class="txt_field">
+              <input type="text"  name="user_lastname" placeholder="LastName" required>
+            </div><br>
+            <div class="txt_field">
+                <input type="email" name="user_email" placeholder="Email" required>
+              </div><br>
+              <div class="txt_field">
+                <input type="text"  name="user_gender" placeholder="Gender" required>
+              </div><br>
+              <div class="txt_field">
+                <input type="text" name="user_phonenumber" placeholder="Phone Number" required>
+              </div><br>
+              <div class="txt_field">
+                <input type="date" name="user_birthdate" placeholder="" required>
+              </div><br>
+			   <div class="txt_field">
+                <input type="text" name="user_address" placeholder="Address" required>
+              </div><br>
+              <div class="txt_field">
+                <input type="text"  name="user_password" placeholder="Password" required>
+              </div><br>
 
                   <input type="submit" value="Register">
                 </form>

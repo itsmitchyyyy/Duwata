@@ -1,4 +1,13 @@
 <?php
+
+require('dbconn.php');
+
+$ID = $_GET['userid'];
+$fetch = "SELECT * FROM users WHERE userid={$ID}";
+$result = mysqli_query($conn, $fetch);
+$row = mysqli_num_rows($result);
+
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -22,20 +31,25 @@
               <div class="col">
                <div class="center">
                 <div class="arrow1">
-                <a href="settings.php"><i class="bi bi-arrow-left-short"></i></a>
+                <a href="settings.php?userid=<?php echo $ID; ?>"><i class="bi bi-arrow-left-short"></i></a>
                 </div>
                 <h1>CHANGE EMAIL</h1>
-                <form>
+                <?php 
+		
+                    if($row > 0) {
+                      while($row = mysqli_fetch_array($result)) {	 
+                ?>
+                <form method="POST" action="changemailback.php?userid=<?php echo $ID ?>">
                     <div class="txt_field">
-                <input type="text" required>
+                <input type="text" name="user_email" value="<?php echo $row ['user_email']?>" required>
                 <span></span>
                 <label>Email Address:</label>
                 </div>
-                <div class="txt_field">
-                    <input type="text" required>
-                    <span></span>
-                    <label>New Email:</label>
-                  </div>
+               
+                  <?php
+		
+                    }		}
+                 ?>
                   
                   <div class="save-btn">
                   <input type="submit" value="Save">
