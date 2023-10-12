@@ -1,4 +1,12 @@
 <?php
+
+require('dbconn.php');
+
+$ID = $_GET['userid'];
+$fetch = "SELECT * FROM users WHERE userid={$ID}";
+$result = mysqli_query($conn, $fetch);
+$row = mysqli_num_rows($result);
+
 ?>
 <!DOCTYPE html>
 <head>

@@ -1,4 +1,12 @@
 <?php
+
+require('dbconn.php');
+
+$ID = $_GET['userid'];
+$fetch = "SELECT * FROM users WHERE userid={$ID}";
+$result = mysqli_query($conn, $fetch);
+$row = mysqli_num_rows($result);
+
 ?>
 <html>
 	<head>
@@ -25,7 +33,7 @@
 			<div class="edit-profile row">
 				<div class="col">
 					<br style="line-height:2">
-					<a href="home.php"><i class="bi bi-arrow-left"></i></a>
+					<a href="home.php?userid=<?php echo $ID; ?>"><i class="bi bi-arrow-left"></i></a>
 					<br><br style="line-height:1">
 					<form id="searchForm">
 						<input type="text" class="searchBar">

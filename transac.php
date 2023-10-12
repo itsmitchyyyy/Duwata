@@ -1,4 +1,12 @@
 <?php
+
+require('dbconn.php');
+
+$ID = $_GET['userid'];
+$fetch = "SELECT * FROM users WHERE userid={$ID}";
+$result = mysqli_query($conn, $fetch);
+$row = mysqli_num_rows($result);
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -22,7 +30,7 @@
         <table>
           <center>
             <div class="arrow2">
-              <a href="home.php"><i class="bi bi-arrow-left-short"></i></a>
+              <a href="home.php?userid=<?php echo $ID;?>"><i class="bi bi-arrow-left-short"></i></a>
             </div>
           <p class="one">Transaction</p><br>
           </center>

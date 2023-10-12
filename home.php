@@ -114,16 +114,16 @@ $row = mysqli_num_rows($result);
                     <i class="fas fa-solid fa-bars primary-text fs-4 me-3" id="menu-toggle"></i>
                 </div>
                 <div class="notif d-flex">
-                    <a href="transac.html"><i class="bi bi-bookmark-fill"></i></a>
-                    <a href="messageContacts.html"><i class="bi bi-chat-left-dots-fill"></i></a>
-                    <a href="notification.html"><i class="bi bi-bell-fill"></i></a>
+                    <a href="transac.php?userid=<?php echo $ID; ?>"><i class="bi bi-bookmark-fill"></i></a>
+                    <a href="messageContacts.php?userid=<?php echo $ID; ?>"><i class="bi bi-chat-left-dots-fill"></i></a>
+                    <a href="notification.php?userid=<?php echo $ID; ?>"><i class="bi bi-bell-fill"></i></a>
                 </div>
             </nav>
 			<div class="container-fluid d-flex justify-content-center align-items-center">
 				<div class="edit-profile row">
 					<div class="col">
 						<br style="line-height:6">
-						<a href="createVenue.php"class="aHREF">
+						<a href="createVenue.php?userid=<?php echo $ID; ?>"class="aHREF">
 							<div class="gymBox">
                                 <i id="addGymIcon" class="bi bi-plus-circle"></i>	
 							<br><br>
@@ -131,7 +131,7 @@ $row = mysqli_num_rows($result);
 							</div>
 						</a>
                         <br>
-						<a href="manageGymInfo.html" class="aHREF">
+						<a href="manageGymInfo.php?userid=<?php echo $ID; ?>" class="aHREF">
 							<div class="gymBox">
 								<div class="gymImgBox">
 									<img src="images/ymca.jpg">

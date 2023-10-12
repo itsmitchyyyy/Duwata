@@ -1,4 +1,12 @@
 <?php
+
+require('dbconn.php');
+
+$ID = $_GET['userid'];
+$fetch = "SELECT * FROM users WHERE userid={$ID}";
+$result = mysqli_query($conn, $fetch);
+$row = mysqli_num_rows($result);
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -27,7 +35,7 @@
         <!-- Sidebar -->
         <div class="bg-white border" id="sidebar-wrapper">
             <div class="setting d-flex justify-content-end">
-                <a href="settings.php"><img src="images/setting.png"></a>
+                <a href="settings.php?userid=<?php echo $ID; ?>"><img src="images/setting.png"></a>
             </div>
             <div class="sidebar-heading d-flex justify-content-center align-items-center">
                 <div>
@@ -89,8 +97,8 @@
                     <i class="fas fa-solid fa-bars primary-text fs-4 me-3" id="menu-toggle"></i>
                 </div>
                 <div class="notif d-flex">
-                    <a href="transac.html"><i class="bi bi-bookmark-fill"></i></a>
-                    <a href="messageContacts.html"><i class="bi bi-chat-left-dots-fill"></i></a>
+                    <a href="transac.php?userid=<?php echo $ID; ?>"><i class="bi bi-bookmark-fill"></i></a>
+                    <a href="messageContacts.php?userid=<?php echo $ID; ?>"><i class="bi bi-chat-left-dots-fill"></i></a>
                     <a href="#"><i class="bi bi-bell-fill"></i></a>
                 </div>
             </nav>
@@ -98,7 +106,7 @@
 				<div class="edit-profile row">
 					<div class="col">
 						<br style="line-height:2">
-						<a href="home.html" ><i style="float:left; color: black;" class="bi bi-arrow-left"></i></a>
+						<a href="home.php?userid=<?php echo $ID; ?>" ><i style="float:left; color: black;" class="bi bi-arrow-left"></i></a>
 						<br><br style="line-height:1">
 						<h3>YMCA HOSTEL CEBU</h3><br>
 						<div class="imgBox">
