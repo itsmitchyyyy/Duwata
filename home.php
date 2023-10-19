@@ -123,7 +123,7 @@ $row = mysqli_num_rows($result);
 				<div class="edit-profile row">
 					<div class="col">
 						<br style="line-height:6">
-						<a href="createVenue.php?userid=<?php echo $ID; ?>"class="aHREF">
+						<a href="createVenue.php?gym_id=<?php echo $ID; ?>"class="aHREF">
 							<div class="gymBox">
                                 <i id="addGymIcon" class="bi bi-plus-circle"></i>	
 							<br><br>
@@ -131,15 +131,32 @@ $row = mysqli_num_rows($result);
 							</div>
 						</a>
                         <br>
-						<a href="manageGymInfo.php?userid=<?php echo $ID; ?>" class="aHREF">
+                        <?php 
+                        
+                            $selectgym = "SELECT * FROM gym WHERE user_id='$ID'";
+                            $gymresult = mysqli_query($conn, $selectgym);
+                            $row = mysqli_num_rows($gymresult);
+
+                            if($row > 0) {
+                                while($row = mysqli_fetch_array($gymresult)) {	 
+                            
+                                
+                        ?>
+						<a href="manageGymInfo.php?userid=<?php echo $ID ?>&gym_id=<?php echo $row['gym_id']?>" class="aHREF">
 							<div class="gymBox">
 								<div class="gymImgBox">
 									<img src="images/ymca.jpg">
 								</div><br>
-                                <label class="gymLabel">YMCA HOSTEL CEBU</label>
-							</div>
+                                <label class="gymLabel"><?php echo $row['gym_name'];?></label>
+                                <h1><?php echo $row['gym_location'];?></h1>
+							</div><br><br>
+                           
 						</a>
-
+                            <?php
+                            
+                                 } 
+                                }
+                            ?>
                         <div class="dropdown">
                             <div class="notify_item">
                                 <div class="notify_info">

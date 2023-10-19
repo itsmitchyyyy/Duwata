@@ -3,9 +3,10 @@
 require('dbconn.php');
 
 $ID = $_GET['userid'];
-$fetch = "SELECT * FROM users WHERE userid={$ID}";
-$result = mysqli_query($conn, $fetch);
-$row = mysqli_num_rows($result);
+$gymID = $_GET['gym_id'];
+$selectgym = "SELECT * FROM gym WHERE gym_id={$gymID}";
+$gymresult = mysqli_query($conn, $selectgym);
+$row = mysqli_num_rows($gymresult);
 
 ?>
 <!DOCTYPE html>
@@ -102,24 +103,38 @@ $row = mysqli_num_rows($result);
                     <a href="#"><i class="bi bi-bell-fill"></i></a>
                 </div>
             </nav>
+                       
+
 			<div class="container-fluid d-flex justify-content-center align-items-center">
 				<div class="edit-profile row">
+                
 					<div class="col">
+                    <?php
+                        
+                        if($row > 0) {
+							while($row = mysqli_fetch_array($gymresult)) {
+                        
+                        ?>
 						<br style="line-height:2">
 						<a href="home.php?userid=<?php echo $ID; ?>" ><i style="float:left; color: black;" class="bi bi-arrow-left"></i></a>
 						<br><br style="line-height:1">
-						<h3>YMCA HOSTEL CEBU</h3><br>
+						<h3><?php echo $row['gym_name']; ?></h3><br>
 						<div class="imgBox">
 							<img src="miko.jpg">
 						</div>
-						<p class="price">Price: 500</p>
+						<p class="price">Price:<?php echo $row['gym_price']?></p>
 						<h5 class="gymDetails">Details:</h5>
 						<p class="details">
-						<i class="bi bi-person-fill"></i> Kenru Azazil <br>
-						<i class="bi bi-envelope-fill"></i> kenru@gmail.com <br>
-						<i class="bi bi-telephone-fill"></i> 09253156323 <br>
-						<i class="bi bi-geo-alt-fill"></i> 51 Osmena Blvd Cebu City 
+						<i class="bi bi-person-fill"></i><?php echo $row['gym_contactperson']?> <br>
+						<i class="bi bi-envelope-fill"></i> <?php echo $row['gym_email']?> <br>
+						<i class="bi bi-telephone-fill"></i> <?php echo $row['gym_contactnumber']?><br>
+						<i class="bi bi-geo-alt-fill"></i> <?php echo $row['gym_location']?>
 						</p><br>
+                            <?php 
+                            
+                            } }
+                            ?>
+                        </div>
 						
 						<!-- Calendar -->
 						<div class="center-container">
@@ -127,48 +142,9 @@ $row = mysqli_num_rows($result);
 						  <div class="calendar__picture">
 							<h3>November 2023</h3>
 						  </div>
-						  <div class="calendar__date">
-							<div class="calendar__day">S</div>
-							<div class="calendar__day">M</div>
-							<div class="calendar__day">T</div>
-							<div class="calendar__day">W</div>
-							<div class="calendar__day">T</div>
-							<div class="calendar__day">F</div>
-							<div class="calendar__day">S</div>
-							<div class="calendar__number"></div>
-							<div class="calendar__number"></div>
-							<div class="calendar__number"></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">1</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">2</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">3</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">4</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">5</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">6</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">7</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">8</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">9</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">10</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">11</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">12</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">13</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">14</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">15</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">16</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">17</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">18</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">19</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">20</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">21</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">22</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">23</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">24</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">25</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">26</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">27</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">28</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">29</a></div>
-							<div class="calendar__number"><a href="manageBookingTime.html">30</a></div>
-						  </div>
+						 <div>
+                            <input type="date">
+                         </div>
 						</div>
 					  </div>
 					  <br><br>
@@ -179,7 +155,6 @@ $row = mysqli_num_rows($result);
 						<img src="images/ymca2.jpg">
 					</div>
 					<br><br>
-					</div>
 				</div>
 			</div>
         </div>

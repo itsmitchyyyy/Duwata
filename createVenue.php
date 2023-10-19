@@ -31,7 +31,7 @@ $row = mysqli_num_rows($result);
                 <a href="home.php?userid=<?php echo $ID; ?>"><i class="bi bi-arrow-left-short"></i></a>
                 </div>
                 <h1>Create Venue</h1>
-                <form method="POST" action="createvenueback.php">
+                <form method="POST" action="createvenueback.php?userid=<?php echo $ID; ?>">
                   <input class="venueInfo" type="text" name="gym_name" placeholder="Gym Name" required><br><br>
                   <input class="venueInfo" type="text" name="gym_location" placeholder="Location" required><br><br>
                   <input class="venueInfo" type="text" name="gym_contactperson" placeholder="Contact Person" required><br><br>

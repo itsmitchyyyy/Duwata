@@ -36,7 +36,10 @@
                 <input type="email" name="user_email" placeholder="Email" required>
               </div><br>
               <div class="txt_field">
-                <input type="text"  name="user_gender" placeholder="Gender" required>
+                  <select id="user_gender" name="user_gender">
+                    <option value="MALE">Male</option?>
+                    <option value="FEMALE">Female</option>
+                  </select>
               </div><br>
               <div class="txt_field">
                 <input type="text" name="user_phonenumber" placeholder="Phone Number" required>
