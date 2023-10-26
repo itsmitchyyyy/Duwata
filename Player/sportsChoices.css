@@ -1,0 +1,40 @@
+#basketball{
+			background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('basketball.jpg');
+			background-size:cover;
+		}
+		#volleyball{
+			background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('volleyball.jpg');
+			background-size:cover;
+		}
+		#badminton{
+			background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('badminton.jpg');
+			background-size:cover;
+		}
+		#tennis{
+			background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('tennis.jpg');
+			background-size:cover;
+		}
+		#tableTennis{
+			background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('tabletennis.jpg');
+			background-position:center;
+			background-size:cover;
+		}
+		.sport{
+			font-weight: bold;
+			border: 1px solid black;
+			width: 100%;
+			margin: 0 auto;
+			display: flex;
+			align-items: center;
+			padding-top:70px;
+			margin-bottom: 10px;
+			border-radius:15px;
+			color:white;
+			font-size:15px;
+			padding-right:70px;
+			padding-bottom:70px;
+			padding-left:30px;
+		}	
+		ul a{
+			text-decoration:none;
+		}

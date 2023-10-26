@@ -109,7 +109,7 @@ $row = mysqli_num_rows($result);
             
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <nav class="navbar justify-content-between navbar-expand-lg py-3 px-4 ">
+            <nav class="navbar justify-content-between navbar-expand-lg py-2 px-4 ">
                 <div>
                     <i class="fas fa-solid fa-bars primary-text fs-4 me-3" id="menu-toggle"></i>
                 </div>
