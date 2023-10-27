@@ -22,7 +22,7 @@
 		<div class="edit-profile row">
 			<div class="col">
 				<br style="line-height:2">
-				<a href="listOfVenues.html"><i class="bi bi-arrow-left"></i></a>
+				<a href="listOfVenues.php"><i class="bi bi-arrow-left"></i></a>
 				<br><br style="line-height:1">
 				<center>
 				<h3>YMCA HOSTEL CEBU</h3>
@@ -51,36 +51,36 @@
 							<div class="calendar__number"></div>
 							<div class="calendar__number"></div>
 							<div class="calendar__number"></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">1</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">2</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">3</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">4</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">5</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">6</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">7</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">8</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">9</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">10</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">11</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">12</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">13</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">14</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">15</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">16</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">17</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">18</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">19</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">20</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">21</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">22</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">23</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">24</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">25</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">26</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">27</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">28</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">29</a></div>
-							<div class="calendar__number"><a href="chooseBookingTime.html">30</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">1</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">2</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">3</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">4</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">5</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">6</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">7</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">8</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">9</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">10</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">11</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">12</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">13</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">14</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">15</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">16</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">17</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">18</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">19</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">20</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">21</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">22</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">23</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">24</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">25</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">26</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">27</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">28</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">29</a></div>
+							<div class="calendar__number"><a href="chooseBookingTime.php">30</a></div>
 						  </div>
 						</div>
 					  </div>

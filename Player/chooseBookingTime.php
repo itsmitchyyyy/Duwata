@@ -22,7 +22,7 @@
 		<div class="edit-profile row">
 			<div class="col">
 				<br style="line-height:2">
-				<a href="viewGymInfo.html"><i class="bi bi-arrow-left"></i></a>
+				<a href="viewGymInfo.php"><i class="bi bi-arrow-left"></i></a>
 				<br><br style="line-height:1">
 				<center>
 				<h3>YMCA HOSTEL CEBU</h3>

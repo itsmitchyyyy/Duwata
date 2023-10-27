@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <head>
-    <title>Gym Info</title>
+    <title>Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="home.css">
-	<link rel="stylesheet" href="listOfVenues.css">
+	<link rel="stylesheet" href="sportsChoices.css">
     <link rel="icon" href="images/duwata.png">
      <!-- Bootstrap CSS -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
@@ -15,10 +15,7 @@
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
 </head>
 <style>
-	a {
-      text-decoration: none;
-      color: #262626;
-    }
+
 </style>
 <body>
     <div class="d-flex" id="wrapper">
@@ -87,53 +84,40 @@
                     <i class="fas fa-solid fa-bars primary-text fs-4 me-3" id="menu-toggle"></i>
                 </div>
                 <div class="notif d-flex">
-                    <a href="transac.html"><i class="bi bi-bookmark-fill"></i></a>
-                    <a href="messageContacts.html"><i class="bi bi-chat-left-dots-fill"></i></a>
+                    <a href="transac.php"><i class="bi bi-bookmark-fill"></i></a>
+                    <a href="messageContacts.php"><i class="bi bi-chat-left-dots-fill"></i></a>
                     <a href="#"><i class="bi bi-bell-fill"></i></a>
                 </div>
             </nav>
 			<div class="container-fluid d-flex justify-content-center align-items-center">
 				<div class="edit-profile row">
-					<div class="col">
-						<br style="line-height:2">
-						<a href="viewGymInfo.html" class="aHREF">
-							<div id="gymBox">
-								<div id="gymImgBox">
-									<img src="tabletennis.jpg">
-								</div>
-								<p>Price: 500</p>
-                                <label id="gymName">YMCA HOSTEL CEBU</label>
-								<i class="bi bi-circle-fill" id="status"></i><br>
-								<i class="bi bi-star"></i>
-								<i class="bi bi-star"></i>
-								<i class="bi bi-star"></i>
-								<i class="bi bi-star"></i>
-								<i class="bi bi-star"></i>
-								<br><br>
-								<p class="gymInfo">Address: 51 Osmeña BLVD, Cebu City, Cebu<br>
-								Phone: (032) 253 4057</p>
-							</div>
+					<ul id="sportsList">
+						<a href="listOfVenues.php">
+						  <li class="sport" id="basketball">
+							Basketball
+						  </li>
 						</a>
-						<br>
-						<a href="viewGymInfo.html" class="aHREF">
-							<div id="gymBox">
-								<div id="gymImgBox">
-									<img src="basketball.jpg">
-								</div>
-								<p>Price: 500</p>
-                                <label id="gymName">CEBU CITY SPORTS CENTER</label>
-								<i class="bi bi-circle-fill" id="status"></i><br>
-								<i class="bi bi-star"></i>
-								<i class="bi bi-star"></i>
-								<i class="bi bi-star"></i>
-								<i class="bi bi-star"></i>
-								<i class="bi bi-star"></i>
-								<br><br>
-								<p class="gymInfo">Address: 51 Osmeña BLVD, Cebu City, Cebu<br>
-								Phone: (032) 253 4057</p>
-							</div>
-						</a>
-					</div>
+					  <a href="listOfVenues.php">
+						  <li class="sport" id="volleyball">
+							  Volleyball
+						  </li>
+					  </a>
+					  <a href="listOfVenues.php">
+						<li class="sport" id="badminton">
+						  Badminton
+						</li>
+					  </a>
+					  <a href="listOfVenues.php">
+						<li class="sport" id="tennis">
+						  Tennis
+						</li>
+					  </a>
+					  <a href="listOfVenues.php">
+						<li class="sport" id="tableTennis">
+						  Table Tennis
+						</li>
+					  </a>
+					</ul>
 				</div>
 			</div>
         </div>

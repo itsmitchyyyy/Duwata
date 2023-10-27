@@ -18,23 +18,18 @@
         <div class="edit-profile row">
           <div class="col">
             <div class="center">
-                <h1>Login</h1>
+              <div class="arrow1">
+                <a href="login.php"><i class="bi bi-arrow-left-short"></i></a>
+                </div>
+                <h1>Forgot Password</h1>
+                <p>Enter your Registered Mobile Number</p>
                 <form>
-                  <div class="txt_field">
-                    <input type="text" placeholder="Username" required>
-                  </div><br>
-                  <div class="txt_field">
-                    <input type="password" placeholder="Password" required>
-                  </div><br>
-                  <div class="me">
-                      <input type="checkbox" checked="checked" name="remember"> Remember me
-                      </div>
-                      <a href="forgotpassword.html"><div class="pass">Forgot Password?</div></a><br><br>
-                  <input type="submit" value="Login">
-                  <p><a>Don't have account yet? <a href="register.html">Create account</a></a></p>
+                  
+                    <input class="num" type="number" placeholder="Mobile Number" required><br><br>
+                  <input type="submit" value="Confirm">
                 </form>
           </div>
         </div>
      </div>
 </body>
-</html>
+</html> 
