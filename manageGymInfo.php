@@ -49,7 +49,7 @@ $row = mysqli_num_rows($gymresult);
                 <div class="d-flex justify-content-between align-items-center border-top">
                     <div class="mt-4 ms-4">
                     <small for="inputFname" class="list-group">Name:</small>
-                    <label class="fw-bold" id="">Jezel T. lahoylahoy</label>
+                    <label class="fw-bold" id=""></label>
                     </div>         
                 </div>    
                 <div class="d-flex justify-content-between align-items-center">

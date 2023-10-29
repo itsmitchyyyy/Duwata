@@ -305,6 +305,7 @@ tr:nth-child(even) {
 #addGymIcon{
   text-align:center;
   font-size:100px;
+  color: #000;
 }
 .gymLabel{
   font-weight:bold;

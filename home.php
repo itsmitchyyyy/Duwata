@@ -102,7 +102,7 @@ $row = mysqli_num_rows($result);
 							}		}
 					?>
 	                <a href="login.php" class="mt-4 ms-4 text-danger fw-bold"> 
-                    <iclass="fas fa-power-off me-2 mb-3"></i>Logout</a>
+                    <iclass="fas fa-power-off me-2 mb-3></i>Logout</a>
 				</div>
 			</div>
         <!-- /#sidebar-wrapper -->
