@@ -3,7 +3,6 @@
 body{
     font-family: 'Poppins', sans-serif;
     background-color: #fff;
-    margin: 0;
 }
   #wrapper {
     overflow-x: hidden;
@@ -306,7 +305,6 @@ tr:nth-child(even) {
 #addGymIcon{
   text-align:center;
   font-size:100px;
-  color: #000;
 }
 .gymLabel{
   font-weight:bold;

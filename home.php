@@ -102,14 +102,14 @@ $row = mysqli_num_rows($result);
 							}		}
 					?>
 	                <a href="login.php" class="mt-4 ms-4 text-danger fw-bold"> 
-                    <iclass="fas fa-power-off me-2 mb-3"></i>Logout</a>
+                    <iclass="fas fa-power-off me-2 mb-3></i>Logout</a>
 				</div>
 			</div>
         <!-- /#sidebar-wrapper -->
             
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <nav class="navbar justify-content-between navbar-expand-lg py-3 px-4 ">
+            <nav class="navbar justify-content-between navbar-expand-lg py-2 px-4 ">
                 <div>
                     <i class="fas fa-solid fa-bars primary-text fs-4 me-3" id="menu-toggle"></i>
                 </div>

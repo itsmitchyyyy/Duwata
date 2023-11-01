@@ -1,0 +1,25 @@
+.date{
+	box-shadow: 5px 8px 6px #888888;
+}
+.date, .continue{
+	padding:18px;
+	border-radius:15px;
+	background-color:#185A56C7;
+	color:white;
+	font-weight:bold;
+	}
+.continue{
+	padding:10px;
+	width:80%;
+	border:1px solid #0C2FE7;
+}
+
+.time-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .icon {
+    margin-left: 10px; /* Adjust this value as needed */
+  }

@@ -1,43 +1,28 @@
-<?php
-
-require('dbconn.php');
-
-$ID = $_GET['userid'];
-$gymID = $_GET['gym_id'];
-$selectgym = "SELECT * FROM gym WHERE gym_id={$gymID}";
-$gymresult = mysqli_query($conn, $selectgym);
-$row = mysqli_num_rows($gymresult);
-
-?>
 <!DOCTYPE html>
 <head>
-    <title>Gym Info</title>
+    <title>Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="home.css">
-	<link rel="stylesheet" href="manageGymInfo.css">
+	<link rel="stylesheet" href="sportsChoices.css">
     <link rel="icon" href="images/duwata.png">
-
      <!-- Bootstrap CSS -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
      <!-- Bootstrap Font Icon CSS -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
 </head>
 <style>
-	a {
-      text-decoration: none;
-      color: #262626;
-    }
+
 </style>
 <body>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-white border" id="sidebar-wrapper">
             <div class="setting d-flex justify-content-end">
-                <a href="settings.php?userid=<?php echo $ID; ?>"><img src="images/setting.png"></a>
+                <a href="settings.php"><img src="images/setting.png"></a>
             </div>
             <div class="sidebar-heading d-flex justify-content-center align-items-center">
                 <div>
@@ -50,7 +35,7 @@ $row = mysqli_num_rows($gymresult);
                 <div class="d-flex justify-content-between align-items-center border-top">
                     <div class="mt-4 ms-4">
                     <small for="inputFname" class="list-group">Name:</small>
-                    <label class="fw-bold" id=""></label>
+                    <label class="fw-bold" id="">Jezel T. lahoylahoy</label>
                     </div>         
                 </div>    
                 <div class="d-flex justify-content-between align-items-center">
@@ -99,71 +84,40 @@ $row = mysqli_num_rows($gymresult);
                     <i class="fas fa-solid fa-bars primary-text fs-4 me-3" id="menu-toggle"></i>
                 </div>
                 <div class="notif d-flex">
-                    <a href="transac.php?userid=<?php echo $ID; ?>"><i class="bi bi-bookmark-fill"></i></a>
-                    <a href="messageContacts.php?userid=<?php echo $ID; ?>"><i class="bi bi-chat-left-dots-fill"></i></a>
+                    <a href="transac.php"><i class="bi bi-bookmark-fill"></i></a>
+                    <a href="messageContacts.php"><i class="bi bi-chat-left-dots-fill"></i></a>
                     <a href="#"><i class="bi bi-bell-fill"></i></a>
                 </div>
             </nav>
-                       
-
 			<div class="container-fluid d-flex justify-content-center align-items-center">
 				<div class="edit-profile row">
-                
-					<div class="col">
-                    <?php
-                        
-                        if($row > 0) {
-							while($row = mysqli_fetch_array($gymresult)) {
-                        
-                        ?>
-						<br style="line-height:2">
-						<a href="home.php?userid=<?php echo $ID; ?>" ><i style="float:left; color: black;" class="bi bi-arrow-left"></i></a>
-						<br><br style="line-height:1">
-						<h3><?php echo $row['gym_name']; ?></h3><br>
-						<div class="imgBox">
-							<img src="miko.jpg">
-						</div>
-						<p class="price">Price:<?php echo $row['gym_price']?></p>
-						<h5 class="gymDetails">Details:</h5>
-						<p class="details">
-						<i class="bi bi-person-fill"></i><?php echo $row['gym_contactperson']?> <br>
-						<i class="bi bi-envelope-fill"></i> <?php echo $row['gym_email']?> <br>
-						<i class="bi bi-telephone-fill"></i> <?php echo $row['gym_contactnumber']?><br>
-						<i class="bi bi-geo-alt-fill"></i> <?php echo $row['gym_location']?>
-						</p><br>
-                            <?php 
-                            
-                            } }
-                            ?>
-                        </div>
-						<div>
-                            <h5>Calendar</h5>
-                            <?php 
-                            
-                                $selectgym = "SELECT * FROM gym WHERE user_id='$ID'";
-                                $gymresult = mysqli_query($conn, $selectgym);
-                                $row = mysqli_num_rows($gymresult);
-
-                                if($row > 0) {
-                                    while($row = mysqli_fetch_array($gymresult)) {	 
-                                
-                                    
-                            ?>
-                            <div>
-                            <a href="gymcalendar.php?userid=<?php echo $ID ?>&gym_id=<?php echo $row['gym_id']?>"> 
-                                <img src="calendar-icon.png" alt="Calendar Icon" width="100" height="100">
-                            </a>
-                            <?php
-                            
-                                    } }
-                            ?>
-                            </div>
-					    </div>
-					<h5>Minimap</h5>
-					<div class="imgBox">
-						<img src="images/ymca2.jpg">
-					</div>
-					<br><br>
+					<ul id="sportsList">
+						<a href="listOfVenues.php">
+						  <li class="sport" id="basketball">
+							Basketball
+						  </li>
+						</a>
+					  <a href="listOfVenues.php">
+						  <li class="sport" id="volleyball">
+							  Volleyball
+						  </li>
+					  </a>
+					  <a href="listOfVenues.php">
+						<li class="sport" id="badminton">
+						  Badminton
+						</li>
+					  </a>
+					  <a href="listOfVenues.php">
+						<li class="sport" id="tennis">
+						  Tennis
+						</li>
+					  </a>
+					  <a href="listOfVenues.php">
+						<li class="sport" id="tableTennis">
+						  Table Tennis
+						</li>
+					  </a>
+					</ul>
 				</div>
 			</div>
         </div>
