@@ -2,10 +2,11 @@
 
 require('dbconn.php');
 
-$ID = $_GET['userid'];
-$fetch = "SELECT * FROM users WHERE userid={$ID}";
-$result = mysqli_query($conn, $fetch);
-$row = mysqli_num_rows($result);
+
+$gymID = $_GET['gym_id'];
+$selectgym = "SELECT * FROM gym WHERE gym_id={$gymID}";
+$gymresult = mysqli_query($conn, $selectgym);
+$row = mysqli_num_rows($gymresult);
 
 ?>
 <!DOCTYPE html>
@@ -28,10 +29,10 @@ $row = mysqli_num_rows($result);
         <div class="edit-profile row">
           <div class="col">
               <div class="arrow1">
-                <a href="home.php?userid=<?php echo $ID; ?>"><i class="bi bi-arrow-left-short"></i></a>
+                <a href="home.php?userid=<?php echo $gymID; ?>"><i class="bi bi-arrow-left-short"></i></a>
                 </div>
                 <h1>Create Venue</h1>
-                <form method="POST" action="createvenueback.php?userid=<?php echo $ID; ?>">
+                <form method="POST" action="createvenueback.php?userid=<?php echo $gymID; ?>">
                   <input class="venueInfo" type="text" name="gym_name" placeholder="Gym Name" required><br><br>
                   <input class="venueInfo" type="text" name="gym_location" placeholder="Location" required><br><br>
                   <input class="venueInfo" type="text" name="gym_contactperson" placeholder="Contact Person" required><br><br>

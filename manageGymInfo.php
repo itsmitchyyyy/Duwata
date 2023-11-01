@@ -20,6 +20,7 @@ $row = mysqli_num_rows($gymresult);
     <link rel="stylesheet" href="home.css">
 	<link rel="stylesheet" href="manageGymInfo.css">
     <link rel="icon" href="images/duwata.png">
+
      <!-- Bootstrap CSS -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
      <!-- Bootstrap Font Icon CSS -->
@@ -135,21 +136,29 @@ $row = mysqli_num_rows($gymresult);
                             } }
                             ?>
                         </div>
-						
-						<!-- Calendar -->
-						<div class="center-container">
-						<div class="calendar">
-						  <div class="calendar__picture">
-							<h3>November 2023</h3>
-						  </div>
-						 <div>
-                            <input type="date">
-                         </div>
-						</div>
-					  </div>
-					  <br><br>
-					  
-					  
+						<div>
+                            <h5>Calendar</h5>
+                            <?php 
+                            
+                                $selectgym = "SELECT * FROM gym WHERE user_id='$ID'";
+                                $gymresult = mysqli_query($conn, $selectgym);
+                                $row = mysqli_num_rows($gymresult);
+
+                                if($row > 0) {
+                                    while($row = mysqli_fetch_array($gymresult)) {	 
+                                
+                                    
+                            ?>
+                            <div>
+                            <a href="gymcalendar.php?userid=<?php echo $ID ?>&gym_id=<?php echo $row['gym_id']?>"> 
+                                <img src="calendar-icon.png" alt="Calendar Icon" width="100" height="100">
+                            </a>
+                            <?php
+                            
+                                    } }
+                            ?>
+                            </div>
+					    </div>
 					<h5>Minimap</h5>
 					<div class="imgBox">
 						<img src="images/ymca2.jpg">
