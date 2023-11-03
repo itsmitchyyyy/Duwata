@@ -1,0 +1,98 @@
+.center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+  }
+
+  .center h1{
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid silver;
+  }
+
+  .txt_field input{
+    border: 1px solid gray;
+    width: 90%;
+    height: 50px;
+    border-radius: 5px;
+    text-align: left 10px; 
+    font-size: medium;
+  }
+
+  .txt_field label{
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    left: 40px;
+  }
+
+  .txt_field p{
+    position: absolute;
+    left: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    color: silver;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="submit"]{
+    width: 50%;
+    height: 50px;
+    border: 1px solid;
+    background: #185A56;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+  }
+  input[type="submit"]:hover{
+    border-color: #185A56;
+    transition: .5s;
+  }
+
+  .venueInfo1{
+    border: 1px solid gray;
+    width: 90%;
+    resize: none; 
+  }
+
+  .arrow1 .bi{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    color: #000;
+    font-size: 18px;
+  }
+
+.edit-profile{
+    text-align: center;
+    width: 100%;
+    height: 1000px;
+    padding: 10px;
+}
+@media screen and (max-width: 768px){
+
+    .edit-profile{
+        text-align: center;
+        width: 100%;
+        height: 900px;
+        padding: 10px;
+    }
+    .center{
+      text-align: center;
+      width: 100%;
+      height: 900px;
+      padding: 10px;
+    }
+}
