@@ -43,12 +43,19 @@ $row = mysqli_num_rows($result);
             <div class="setting d-flex justify-content-end">
             <a href="settings.php?userid=<?php echo $ID; ?>"><img src="images/setting.png"></a>
             </div>
+            <?php
+            
+             while($row=mysqli_fetch_assoc($result)){
+             
+            ?>
             <div class="sidebar-heading d-flex justify-content-center align-items-center">
                 <div>
-                    <img class="img-profile" src="img/image.png">
+                    <img class="img-profile" src="user_image/<?php echo $row['user_picture']; ?>">
                 </div>
             </div>
-
+             <?php
+             }
+             ?>   
             <!--sidebar Content -->
             <div class="list-group">
 									<?php 
@@ -145,7 +152,7 @@ $row = mysqli_num_rows($result);
 						<a href="manageGymInfo.php?userid=<?php echo $ID ?>&gym_id=<?php echo $row['gym_id']?>" class="aHREF">
 							<div class="gymBox">
 								<div class="gymImgBox">
-									<img src="images/ymca.jpg">
+									<img src="gym_picture/<?php echo $row['gym_picture']?>">
 								</div><br>
                                 <label class="gymLabel"><?php echo $row['gym_name'];?></label>
                                 <h1><?php echo $row['gym_location'];?></h1>
