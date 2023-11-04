@@ -14,7 +14,7 @@
               <div class="col" >
                 <div class="center">
                 <div class="arrow1">
-                <a href="sportsChoices.html"><i class="bi bi-arrow-left"></i></a>
+                <a href="sportsChoices.php"><i class="bi bi-arrow-left"></i></a>
                 </div>
                     <h1>BOOKING</h1><br>
                     <table id="customers">           
@@ -28,7 +28,7 @@
                         <td>04/10/23</td>
                         <td>Baskeyball</td>
                         <td>YMCA Hostel Cebu</td>
-                        <td><a href="bookingsummary.html"><input type="submit" value="View"></a></td>
+                        <td><a href="bookingsummary.php"><input type="submit" value="View"></a></td>
                     </tr>
                     </table>
                 </div>

@@ -14,7 +14,7 @@
               <div class="col">
                 <div class="center"><br><br>
                     <div class="arrow1">
-                        <a href="booking.html"><i class="bi bi-arrow-left"></i></a>
+                        <a href="booking.php"><i class="bi bi-arrow-left"></i></a>
                         </div>
                     <h1>Booking Summary</h1><br>
                     <div class="content-box">
@@ -40,7 +40,7 @@
                         <th>PHP 10,000</th>
                     </tr>
                   </table>
-                  <a href="viewGymInfo.html"><input type="submit" value="Rebook"></a>
+                  <a href="viewGymInfo.php"><input type="submit" value="Rebook"></a>
                   <a href="#"><input type="submit2" value="Cancel"></a>
               </div>
             </div>
