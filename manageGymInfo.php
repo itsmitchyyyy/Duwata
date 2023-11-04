@@ -121,7 +121,7 @@ $row = mysqli_num_rows($gymresult);
 						<br><br style="line-height:1">
 						<h3><?php echo $row['gym_name']; ?></h3><br>
 						<div class="imgBox">
-							<img src="miko.jpg">
+							<img src="gym_picture/<?php echo $row['gym_picture']?>">
 						</div>
 						<p class="price">Price:<?php echo $row['gym_price']?></p>
 						<h5 class="gymDetails">Details:</h5>
@@ -130,39 +130,24 @@ $row = mysqli_num_rows($gymresult);
 						<i class="bi bi-envelope-fill"></i> <?php echo $row['gym_email']?> <br>
 						<i class="bi bi-telephone-fill"></i> <?php echo $row['gym_contactnumber']?><br>
 						<i class="bi bi-geo-alt-fill"></i> <?php echo $row['gym_location']?>
-						</p><br>
-                            <?php 
-                            
-                            } }
-                            ?>
+						</p>
                         </div>
 						<div>
                             <h5>Calendar</h5>
-                            <?php 
-                            
-                                $selectgym = "SELECT * FROM gym WHERE user_id='$ID'";
-                                $gymresult = mysqli_query($conn, $selectgym);
-                                $row = mysqli_num_rows($gymresult);
-
-                                if($row > 0) {
-                                    while($row = mysqli_fetch_array($gymresult)) {	 
-                                
-                                    
-                            ?>
                             <div>
                             <a href="gymcalendar.php?userid=<?php echo $ID ?>&gym_id=<?php echo $row['gym_id']?>"> 
                                 <img src="calendar-icon.png" alt="Calendar Icon" width="100" height="100">
                             </a>
-                            <?php
-                            
-                                    } }
-                            ?>
                             </div>
 					    </div>
 					<h5>Minimap</h5>
 					<div class="imgBox">
-						<img src="images/ymca2.jpg">
+						<img src="gym_map/<?php echo $row['map_picture']?>">
 					</div>
+                    <?php 
+                            
+                        } }
+                        ?>
 					<br><br>
 				</div>
 			</div>

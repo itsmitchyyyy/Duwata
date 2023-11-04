@@ -3,9 +3,9 @@
 require('dbconn.php');
 
 $ID = $_GET['userid'];
-$fetch = "SELECT * FROM users WHERE userid={$ID}";
+$fetch = "SELECT * FROM users WHERE userid='$ID'";
 $result = mysqli_query($conn, $fetch);
-$row = mysqli_num_rows($result);
+
 
 
 
@@ -33,13 +33,22 @@ $row = mysqli_num_rows($result);
           <div class="arrow">
           <a href="home.php?userid=<?php echo $ID; ?>"><i class="bi bi-arrow-left-short"></i></a>
           </div>
-          <form>
+
+          <form method="POST" action="upload_userimage.php?userid=<?php echo $ID; ?>" enctype="multipart/form-data">
+          <?php 
+           while($row=mysqli_fetch_assoc($result)){
+           ?>
            <div class="edit-profile1">
-            <img src="images/miko.jpg" id="image">
+            <img src="user_image/<?php echo $row['user_picture']; ?>">
            </div>
-            <label class="edit-img-1 rounded">Edit Image
-            <input id="inImg" type="file" style="display: none;">
-            </label>
+            <label class="edit-img-1 rounded">Edit Image</label>
+            <input type="file" name="user_picture"  accept="image/*">
+            <button>Submit</button>
+            <?php
+                  
+                }
+                  ?>
+          </form>  
             <div class="changes">
               <div class="ic d-flex justify-content-start ">
               <a href="changename.php?userid=<?php echo $ID; ?>"><i class="bi bi-pencil-fill"></i>Change Name</a>
@@ -55,8 +64,6 @@ $row = mysqli_num_rows($result);
               <a href="changeloc.php?userid=<?php echo $ID; ?>"><i class="bi bi-geo-alt-fill"></i>Change Location</a>
               </div>
             </div><br><br><br><br><br><br>
-                  
-          </form>
         </div>
       </div>
    </div>

@@ -32,7 +32,7 @@ $row = mysqli_num_rows($gymresult);
                 <a href="home.php?userid=<?php echo $gymID; ?>"><i class="bi bi-arrow-left-short"></i></a>
                 </div>
                 <h1>Create Venue</h1>
-                <form method="POST" action="createvenueback.php?userid=<?php echo $gymID; ?>">
+                <form method="POST" action="createvenueback.php?userid=<?php echo $gymID; ?>" enctype="multipart/form-data">
                   <input class="venueInfo" type="text" name="gym_name" placeholder="Gym Name" required><br><br>
                   <input class="venueInfo" type="text" name="gym_location" placeholder="Location" required><br><br>
                   <input class="venueInfo" type="text" name="gym_contactperson" placeholder="Contact Person" required><br><br>
@@ -45,7 +45,7 @@ $row = mysqli_num_rows($gymresult);
                     <label id="addPhotoLabel">Add Photo</label><br>
                       <div class="file-input-container">
                         <i id="addPhoto" class="bi bi-plus-square"></i>
-                        <input type="file" id="photoInput" accept="image/*">
+                        <input type="file" name="gym_picture" accept="image/*">
                       </div>
                     </div>
                     
@@ -53,7 +53,7 @@ $row = mysqli_num_rows($gymresult);
                     <label id="addPhotoLabel" >Add Photo for Minimap</label><br>
                       <div class="file-input-container">
                         <i id="addPhoto" class="bi bi-plus-square"></i>
-                        <input type="file" id="minimapInput" accept="image/*">	
+                        <input type="file"  name="map_picture" accept="image/*">	
                       </div><br><br>
                     </div>
                     <button class="confirmCreateVenue">Confirm</button>
