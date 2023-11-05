@@ -1,3 +1,13 @@
+<?php
+
+require('dbconn.php');
+
+$playID = $_GET['playerID'];
+$fetch = "SELECT * FROM players WHERE playerID='$playID'";
+$playerresult = mysqli_query($conn, $fetch);
+$row = mysqli_num_rows($playerresult);
+
+?>
 <!DOCTYPE html>
 <head>
     <title>Home</title>
@@ -22,58 +32,74 @@
         <!-- Sidebar -->
         <div class="bg-white border" id="sidebar-wrapper">
             <div class="setting d-flex justify-content-end">
-                <a href="settings.php"><img src="images/setting.png"></a>
+                <a href="settings.php?playerID=<?php echo $playID ?>"><img src="images/setting.png"></a>
             </div>
+            <?php 
+             while($row=mysqli_fetch_assoc($playerresult)){
+            ?>
+           
             <div class="sidebar-heading d-flex justify-content-center align-items-center">
                 <div>
-                    <img class="img-profile" src="img/image.png">
+                    <img class="img-profile" src="player_picture/<?php echo $row ['player_picture']?>">
                 </div>
             </div>
+            <?php } ?>
 
             <!--sidebar Content -->
             <div class="list-group">
+            <?php 
+		
+                    if($row > 0) {
+                    while($row = mysqli_fetch_array($playerresult)) {	 
+        
+        
+                        ?>
                 <div class="d-flex justify-content-between align-items-center border-top">
                     <div class="mt-4 ms-4">
-                    <small for="inputFname" class="list-group">Name:</small>
-                    <label class="fw-bold" id="">Jezel T. lahoylahoy</label>
+                    <small for="inputFname" class="list-group" value="<?php echo $row['player_firstname']?>">Name:</small>
+					<label class="fw-bold" for="<?php echo $row['player_firstname'];?>"><?php echo $row['player_firstname']?></label>
                     </div>         
                 </div>    
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="mt-4 ms-4">
-                    <small for="inputFname" class="list-group">Gender:</small>
-                    <label class="fw-bold" id="">Female</label>
+                    <small for="inputFname" class="list-group" value="<?php echo $row['player_gender']?>">Gender:</small>
+					<label class="fw-bold" for="<?php echo $row['player_gender'];?>"><?php echo $row['player_gender']?></label>
                     </div>          
                 </div>   
 
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="mt-4 ms-4">
-                    <small for="inputFname" class="list-group">Mobile Number:</small>
-                    <label class="fw-bold" id="">09123456789</label>
+                    <small for="inputFname" class="list-group" value="<?php echo $rowp['player_phonenumber']?>">Mobile Number:</small>
+                    <label class="fw-bold" for="<?php echo $row['player_phonenumber']?>"><?php echo $row['player_phonenumber']?></label>
                     </div>          
                 </div>   
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="mt-4 ms-4">
-                    <small for="inputFname" class="list-group">Email:</small>
-                    <label class="fw-bold" id="">lahoylahoy.jezel18@gmail.com</label>
+                    <small for="inputFname" class="list-group" value="<?php echo $row['player_email']?>">Email:</small>
+                    <label class="fw-bold" for="<?php echo $row['player_email']?>"><?php echo $row['player_email']?></label>
                     </div>  
                 </div>   
 
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="mt-4 ms-4">
-                    <small for="inputFname" class="list-group">Birth Date:</small>
-                    <label class="fw-bold" id="">12/04/2000</label>
+                    <small for="inputFname" class="list-group" value="<?php echo $row['player_birthdate']?>">Birth Date:</small>
+                    <label class="fw-bold" for="<?php echo $rowp['player_birthdate']?>"><?php echo $row['player_birthdate']?></label>
                     </div>          
                 </div>   
 
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="mt-4 ms-4">
-                    <small for="inputFname" class="list-group">Address:</small>
-                    <label class="fw-bold" id="">Peir 3</label>
+                    <small for="inputFname" class="list-group" value="<?php echo $row['player_address']?>">Address:</small>
+                    <label class="fw-bold" for="<?php echo $row['player_address']?>"><?php echo $row['player_address']?></label>
                     </div>         
                 </div>     
                 <a href="#" class="mt-4 ms-4 text-danger fw-bold"><i
                         class="fas fa-power-off me-2 mb-3"></i>Logout</a>
             </div>
+            <?php 
+                    }
+                }
+            ?>
         </div>
         <!-- /#sidebar-wrapper -->
             

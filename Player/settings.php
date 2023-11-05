@@ -1,4 +1,12 @@
 <?php
+
+  require("dbconn.php");
+
+  $playID = $_GET['playerID'];
+  $fetch = "SELECT * FROM players WHERE playerID='$playID'";
+  $playerresult = mysqli_query($conn, $fetch);
+  $row = mysqli_num_rows($playerresult);
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -21,31 +29,34 @@
         <div class="col">
           <h2>Edit Profile</h2>
           <div class="arrow">
-            <a href="listOfVenues.php"><i class="bi bi-arrow-left-short"></i></a>
+            <a href="sportschoices.php?playerID=<?php echo $playID?>"><i class="bi bi-arrow-left-short"></i></a>
           </div>
           <form>
+          <?php 
+           while($row=mysqli_fetch_assoc($playerresult)){
+           ?>
            <div class="edit-profile1">
-            <img src="images/miko.jpg" id="image">
+            <img src="player_picture/<?php echo $row['player_picture']?>" >
            </div>
+           <?php }?>
             <label class="edit-img-1 rounded">Edit Image
             <input id="inImg" type="file" style="display: none;">
             </label>
             <div class="changes">
               <div class="ic d-flex justify-content-start ">
-                <a href="changename.php"><i class="bi bi-pencil-fill"></i>Change Name</a>
+                <a href="changename.php?playerID=<?php echo $playID?>"><i class="bi bi-pencil-fill"></i>Change Name</a>
               </div>
               <span></span>
               <div class="d-flex justify-content-start">
-                <a href="changemail.php"><i class="bi bi-envelope-fill"></i>Change Email</a>
+                <a href="changemail.php?playerID=<?php echo $playID?>"><i class="bi bi-envelope-fill"></i>Change Email</a>
               </div>
               <div class="d-flex justify-content-start">
-                <a href="changepass.php"><i class="bi bi-shield-lock-fill"></i>Change Password</a>
+                <a href="changepass.php?playerID=<?php echo $playID?>"><i class="bi bi-shield-lock-fill"></i>Change Password</a>
               </div>
               <div class="d-flex justify-content-start">
-                <a href="changeloc.php"><i class="bi bi-geo-alt-fill"></i>Change Location</a>
+                <a href="changeloc.php?playerID=<?php echo $playID?>"><i class="bi bi-geo-alt-fill"></i>Change Location</a>
               </div>
-            </div><br><br><br><br><br><br>
-                  <input type="submit" value="Save">
+            
           </form>
         </div>
       </div>

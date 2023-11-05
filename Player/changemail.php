@@ -1,4 +1,12 @@
 <?php
+
+require('dbconn.php');
+
+$playID = $_GET['playerID'];
+$fetch = "SELECT * FROM players WHERE playerID='$playID'";
+$playerresult = mysqli_query($conn, $fetch);
+$row = mysqli_num_rows($playerresult);
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -22,25 +30,25 @@
               <div class="col">
                <div class="center">
                 <div class="arrow1">
-                <a href="settings.php"><i class="bi bi-arrow-left-short"></i></a>
+                <a href="settings.php?playerID=<?php echo $playID ?>"><i class="bi bi-arrow-left-short"></i></a>
                 </div>
                 <h1>CHANGE EMAIL</h1>
-                <form>
+                <?php 
+		
+                   if($row > 0) {
+                    while($row = mysqli_fetch_array($playerresult)) {	 
+              ?>
+                <form method="POST" action="changemailback.php?playerID=<?php echo $playID ?>">
                     <div class="txt_field">
-                <input type="text" required>
+                <input type="text" name="player_email" value="<?php echo $row['player_email']?>"required>
                 <span></span>
                 <label>Email Address:</label>
                 </div>
-                <div class="txt_field">
-                    <input type="text" required>
-                    <span></span>
-                    <label>New Email:</label>
-                  </div>
-                  
                   <div class="save-btn">
                   <input type="submit" value="Save">
                   </div>
                 </form>
+                <?php }}?>
                </div>
               </div>
             </div>

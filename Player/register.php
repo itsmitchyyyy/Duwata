@@ -20,34 +20,45 @@
             <div class="center">
                 <h1>Register</h1>
                 <h3>Enter your personal informations</h3>
-                <form>
+                <form method="POST" action="registerback.php" enctype="multipart/form-data">
                   <div class="txt_field">
-                    <input type="text" placeholder="Firstname" required>
+                    <input type="text" placeholder="Firstname" name="player_firstname" required>
                   </div><br>
                   <div class="txt_field">
-                    <input type="text" placeholder="Lastname" required>
+                    <input type="text" placeholder="Mastname" name="player_middlename" required>
                   </div><br>
                   <div class="txt_field">
-                      <input type="text" placeholder="Email" required>
+                    <input type="text" placeholder="Lastname" name="player_lastname" required>
+                  </div><br>
+                  <div class="txt_field">
+                      <input type="text" placeholder="Email" name="player_email" required>
                     </div><br>
                     <div class="txt_field">
-                      <input type="text" placeholder="Gender" required>
+                      <select id="user_gender" name="player_gender">
+                        <option value="MALE">Male</option?>
+                        <option value="FEMALE">Female</option>
+                      </select>
                     </div><br>
                     <div class="txt_field">
-                      <input type="text" placeholder="Number" required>
+                      <input type="text" placeholder="Phone Number" name="player_phonenumber" required>
                     </div><br>
                     <div class="txt_field">
-                      <input type="date" placeholder="" required>
+                      <input type="date" placeholder="" name="player_birthdate"required>
                     </div><br>
-                     
+                    <div class="txt_field">
+                      <input type="text" placeholder="Address" name="player_address" required>
+                    </div><br>
+                    <div class="txt_field">
+                      <input type="text" placeholder="Password" name="player_password" required>
+                    </div><br>
                     <div id="column">
-                      <label id="addPhotoLabel">Valid ID</label><br>
+                      <label>Valid ID</label><br>
                         <div class="file-input-container">
-                          <i id="addPhoto" class="bi bi-plus-square"></i>
-                          <input type="file" id="validinput"><br><br>
+                          <i  class="bi bi-plus-square"></i>
+                          <input type="file" name="player_picture"><br><br>
                         </div>
                     </div>
-
+                    
                   <input type="submit" value="Register">
                 </form>
               </div>
