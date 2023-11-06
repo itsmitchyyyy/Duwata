@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require('dbconn.php');
 
     $User = $_POST['admin_user'];
-    $Pass = $_POST['admin_password'];
+    $Pass = $_POST['admin_pass'];
 
     $fetch = "SELECT * FROM admin_login";
 

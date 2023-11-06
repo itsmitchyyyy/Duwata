@@ -1,3 +1,10 @@
+<?php 
+
+    require("dbconn.php");
+
+    $adID = $_GET['adminID'];
+
+?>
 <html>
     <head>
         <meta charset="utf-8">
@@ -16,9 +23,9 @@
                     <span class="fas fa-bars" id="bars"></span>
                 </label>
                 <ol>
-                    <li><a href="home.php">Manage players</a></li>
-                    <li><a href="gym.php">Manage Gym Owners</a></li>
-                    <li><a href="transac.php">Manage Transaction</a></li>
+                    <li><a href="home.php?adminID=<?php echo $adID?>">Manage players</a></li>
+                    <li><a href="gym.php?adminID=<?php echo $adID?>">Manage Gym Owners</a></li>
+                    <li><a href="transac.php?adminID=<?php echo $adID?>">Manage Transaction</a></li>
                 </ol>
             </div>
             <img src="images/duwata.png" class="user-logo">
@@ -49,13 +56,27 @@
                     <th>Contact No.</th>
                     <th>Address</th>
                   </tr>
+                  <?php
+                  
+                    $fetch = "SELECT * FROM players";
+                    $result = mysqli_query($conn, $fetch);
+                    $row = mysqli_num_rows($result);
+
+                    if($row > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+
+                      
+                    
+                    
+                  ?>
                   <tr>
-                    <td>1</td>
-                    <td>John Miecho C. Arnad</td>
-                    <td>arnadjohnmiecho25@gmail.com</td>
-                    <td>09123456789</td>
-                    <td>Kalunasan</td>
+                    <td><?php echo $row['playerID']?></td>
+                    <td><?php echo $row['player_firstname'].' '.$row['player_middlename'].' '.$row['player_lastname']?></td>
+                    <td><?php echo $row['player_email']?></td>
+                    <td><?php echo $row['player_phonenumber']?></td>
+                    <td><?php echo $row['player_address']?></td>
                   </tr>
+                  <?php }} ?>
             </table>
 
             <script>
