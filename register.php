@@ -36,7 +36,7 @@
                 <input type="email" name="user_email" placeholder="Email" required>
               </div><br>
               <div class="txt_field">
-                  <select id="user_gender" name="user_gender">
+                  <select id="user_gender" name="user_gender" style="border: 1px solid gray;width: 100%;height: 50px; border-radius: 25px;text-align: center; color: gray;">
                     <option value="MALE">Male</option?>
                     <option value="FEMALE">Female</option>
                   </select>
