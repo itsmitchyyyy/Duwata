@@ -4,14 +4,14 @@
 
     
     $ID = $_GET['userid'];
-    $name = $_POST['gym_name'];
-    $location = $_POST['gym_location'];
-    $conperson = $_POST['gym_contactperson'];
-    $connumber = $_POST['gym_contactnumber'];
-    $email = $_POST['gym_email'];
-    $sports = $_POST['gym_sports'];
-    $price = $_POST['gym_price'];
-    $rules = $_POST['gym_rules'];
+    $name = mysqli_real_escape_string($conn, $_POST['gym_name']);
+    $location = mysqli_real_escape_string($conn, $_POST['gym_location']);
+    $conperson = mysqli_real_escape_string($conn, $_POST['gym_contactperson']);
+    $connumber = mysqli_real_escape_string($conn, $_POST['gym_contactnumber']);
+    $email = mysqli_real_escape_string($conn, $_POST['gym_email']);
+    $sports = mysqli_real_escape_string($conn, $_POST['gym_sports']);
+    $price = mysqli_real_escape_string($conn, $_POST['gym_price']);
+    $rules = mysqli_real_escape_string($conn, $_POST['gym_rules']);
 
     $gymfilename = $_FILES['gym_picture']['name'];
     $gymfilesize = $_FILES['gym_picture']['size'];
@@ -42,8 +42,8 @@
             move_uploaded_file($maptmp_name,$mapfile_upload_path);  
         
 
-        $addgym = "INSERT INTO gym VALUES ('', '$ID', '{$name}', '{$location}', '{$conperson}', '{$connumber}', '{$email}', '{$sports}', '{$price}', '{$rules}', '$gymnewFileName','$mapnewFileName')";
-        $result = mysqli_query($conn, $addgym);
+            $addgym = "INSERT INTO gym VALUES ('', '$ID', '$name', '$location', '$conperson', '$connumber', '$email', '$sports', '$price', '$rules', '$gymnewFileName', '$mapnewFileName')";
+             $result = mysqli_query($conn, $addgym);
     
         header("Location:home.php?userid=".$ID);
         }

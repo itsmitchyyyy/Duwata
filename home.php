@@ -53,18 +53,9 @@ $row = mysqli_num_rows($result);
                     <img class="img-profile" src="user_image/<?php echo $row['user_picture']; ?>">
                 </div>
             </div>
-             <?php
-             }
-             ?>   
             <!--sidebar Content -->
             <div class="list-group">
-									<?php 
-		
-							if($row > 0) {
-							while($row = mysqli_fetch_array($result)) {	 
-							
-							
-					?>
+								
 					<div class="d-flex justify-content-between align-items-center border-top">
 						<div class="mt-4 ms-4">
 						<small for="inputFname" class="list-group" value="<?php echo $row['user_firstname']?>">Name:</small>
@@ -106,7 +97,7 @@ $row = mysqli_num_rows($result);
 					</div> 
 					<?php
 		
-							}		}
+							}
 					?>
 	                <a href="login.php" class="mt-4 ms-4 text-danger fw-bold"> 
                     <iclass="fas fa-power-off me-2 mb-3></i>Logout</a>
@@ -140,7 +131,7 @@ $row = mysqli_num_rows($result);
                         <br>
                         <?php 
                         
-                            $selectgym = "SELECT * FROM gym WHERE user_id='$ID'";
+                            $selectgym = "SELECT * FROM gym WHERE userid='$ID'";
                             $gymresult = mysqli_query($conn, $selectgym);
                             $row = mysqli_num_rows($gymresult);
 

@@ -33,28 +33,22 @@ $row = mysqli_num_rows($result);
                 <a href="settings.php?userid=<?php echo $ID; ?>"><i class="bi bi-arrow-left-short"></i></a>
                 </div>
                 <h1>CHANGE PASSWORD</h1>
-                <form>
-                    <div class="txt_field">
-                <input type="password" required>
-                <span></span>
-                <label>Current Password:</label>
-                </div><br>
-                <hr>
+                <?php 
+		
+                    if($row > 0) {
+                    while($row = mysqli_fetch_array($result)) {	 
+                ?>
+                <form method="POST" action="changepassback.php?userid=<?php echo $ID?>">
                 <div class="txt_field">
-                    <input type="password" required>
+                    <input type="text" name="user_password" value="<?php echo $row ['user_password']?>"required>
                     <span></span>
-                    <label>New Password:</label>
-                  </div>
-                 <div class="txt_field">
-                    <input type="password" required>
-                    <span></span>
-                    <label>Confirm Password:</label>
-                  </div>
-                  
+                    <label>Password:</label>
+                </div>
                   <div class="save-btn">
                   <input type="submit" value="Save">
                   </div>
                 </form>
+                <?php }} ?>
                </div>
               </div>
             </div>

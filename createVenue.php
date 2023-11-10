@@ -38,7 +38,21 @@ $row = mysqli_num_rows($gymresult);
                   <input class="venueInfo" type="text" name="gym_contactperson" placeholder="Contact Person" required><br><br>
                   <input class="venueInfo" type="number" name="gym_contactnumber" placeholder="Contact No" required><br><br>
                   <input class="venueInfo" type="email" name="gym_email" placeholder="Email" required><br><br>
-                  <input class="venueInfo" type="text" name="gym_sports" placeholder="Sports" required><br><br>
+                  <div>
+                    <select name="gym_sports">
+                              <?php
+                              
+                              $sports = "SELECT * FROM sports";
+                              $sportresult = mysqli_query($conn, $sports);
+                              
+                                if($sportresult) {
+                                  while($sportsrow = mysqli_fetch_assoc($sportresult)) {
+                                    $sportname = $sportsrow['sport_name'];
+                            ?>
+                        <option value="<?php echo $sportname; ?>"><?php echo $sportname; ?></option>
+                        <?php }} ?>
+                    </select>
+                  </div>
                   <input class="venueInfo" type="number" name="gym_price" placeholder="Price Rate" required><br><br>
                   <textarea rows="5" class="venueInfo1" type="text" name="gym_rules" placeholder="Rules and Regulation" required></textarea>
                   <div id="column">
@@ -48,7 +62,6 @@ $row = mysqli_num_rows($gymresult);
                         <input type="file" name="gym_picture" accept="image/*">
                       </div>
                     </div>
-                    
                     <div id="column">
                     <label id="addPhotoLabel" >Add Photo for Minimap</label><br>
                       <div class="file-input-container">

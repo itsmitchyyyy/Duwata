@@ -42,18 +42,9 @@ $row = mysqli_num_rows($playerresult);
                 <div>
                     <img class="img-profile" src="player_picture/<?php echo $row ['player_picture']?>">
                 </div>
-            </div>
-            <?php } ?>
-
+            </div>         
             <!--sidebar Content -->
             <div class="list-group">
-            <?php 
-		
-                    if($row > 0) {
-                    while($row = mysqli_fetch_array($playerresult)) {	 
-        
-        
-                        ?>
                 <div class="d-flex justify-content-between align-items-center border-top">
                     <div class="mt-4 ms-4">
                     <small for="inputFname" class="list-group" value="<?php echo $row['player_firstname']?>">Name:</small>
@@ -98,7 +89,6 @@ $row = mysqli_num_rows($playerresult);
             </div>
             <?php 
                     }
-                }
             ?>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -123,26 +113,6 @@ $row = mysqli_num_rows($playerresult);
 							Basketball
 						  </li>
 						</a>
-					  <a href="listOfVenues.php">
-						  <li class="sport" id="volleyball">
-							  Volleyball
-						  </li>
-					  </a>
-					  <a href="listOfVenues.php">
-						<li class="sport" id="badminton">
-						  Badminton
-						</li>
-					  </a>
-					  <a href="listOfVenues.php">
-						<li class="sport" id="tennis">
-						  Tennis
-						</li>
-					  </a>
-					  <a href="listOfVenues.php">
-						<li class="sport" id="tableTennis">
-						  Table Tennis
-						</li>
-					  </a>
 					</ul>
 				</div>
 			</div>

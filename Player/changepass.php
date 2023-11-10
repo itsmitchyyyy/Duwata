@@ -38,24 +38,12 @@ $row = mysqli_num_rows($playerresult);
                     if($row > 0) {
                     while($row = mysqli_fetch_array($playerresult)) {	 
                 ?>
-                <form>
-                    <div class="txt_field">
-                <input type="password" required>
-                <span></span>
-                <label>Current Password:</label>
-                </div><br>
-                <hr>
-                <div class="txt_field">
-                    <input type="password" required>
-                    <span></span>
-                    <label>New Password:</label>
-                  </div>
+                <form method="POST" action="changepassback.php?playerID=<?php echo $playID?>">
                  <div class="txt_field">
-                    <input type="password" required>
+                    <input type="text" name="player_password" value="<?php echo $row['player_password']?>" required>
                     <span></span>
-                    <label>Confirm Password:</label>
+                    <label>Password:</label>
                   </div>
-                  
                   <div class="save-btn">
                   <input type="submit" value="Save">
                   </div>
