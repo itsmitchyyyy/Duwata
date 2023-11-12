@@ -1,4 +1,9 @@
 <?php
+
+	require("dbconn.php");
+
+	
+
 ?>
 <html>
 	<head>

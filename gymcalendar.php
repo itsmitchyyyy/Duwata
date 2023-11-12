@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
                 },
                 onSelect: function (dateText, inst) {
                     var selectedDate = $(this).val();
-                    window.location.href = 'gymselect_time.php?date=' + selectedDate;
+                    window.location.href = 'manageBookingTime.php?date=' + selectedDate;
                 }
             });
         });

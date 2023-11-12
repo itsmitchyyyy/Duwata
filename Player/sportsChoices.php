@@ -106,15 +106,17 @@ $row = mysqli_num_rows($playerresult);
                 </div>
             </nav>
 			<div class="container-fluid d-flex justify-content-center align-items-center">
+                
 				<div class="edit-profile row">
 					<ul id="sportsList">
 						<a href="listOfVenues.php">
 						  <li class="sport" id="basketball">
-							Basketball
+                              basketball
 						  </li>
 						</a>
 					</ul>
 				</div>
+              
 			</div>
         </div>
     </div>

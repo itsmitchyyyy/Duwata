@@ -55,9 +55,11 @@
                     <th>Email</th>
                     <th>Contact No.</th>
                     <th>Address</th>
+                    <th>Disable Account</th>
                   </tr>
                   <?php
-                  
+
+
                     $fetch = "SELECT * FROM players";
                     $result = mysqli_query($conn, $fetch);
                     $row = mysqli_num_rows($result);
@@ -75,6 +77,9 @@
                     <td><?php echo $row['player_email']?></td>
                     <td><?php echo $row['player_phonenumber']?></td>
                     <td><?php echo $row['player_address']?></td>
+                    <td>
+                        <form method="POST" action="deleteplayer.php?playerID=<?php echo $row['playerID']?>"><button>Disable</button></form>
+                    </td>
                   </tr>
                   <?php }} ?>
             </table>

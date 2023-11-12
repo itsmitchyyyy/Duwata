@@ -22,7 +22,7 @@
                 </label>
                 <ol>
                     <li><a href="home.php?adminID=<?php echo $adID?>">Manage players</a></li>
-                    <li><a href="gym.php?AdminID=<?php echo $adID?>">Manage Gym Owners</a></li>
+                    <li><a href="gym.php?adminID=<?php echo $adID?>">Manage Gym Owners</a></li>
                     <li><a href="transac.php?adminID=<?php echo $adID?>">Manage Transaction</a></li>
                 </ol>
             </div>
@@ -53,6 +53,7 @@
                     <th>Email</th>
                     <th>Phone Number</th>
                     <th>Address</th>
+                    <th>Disable Account</th>
                   </tr>
                   <?php 
                   
@@ -71,6 +72,10 @@
                     <td><?php echo $row['user_email']?></td>
                     <td><?php echo $row['user_phonenumber']?></td>
                     <td><?php echo $row['user_address']?></td>
+                    <td>
+                    
+                        <form method="POST" action="deletegymowner.php?userid=<?php echo $row['userid']?>"><button>Disable</button></form>
+                    </td>
                   </tr>
                   <?php }} ?>
             </table>
