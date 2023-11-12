@@ -497,7 +497,7 @@ tr:nth-child(even) {
 				<div class="edit-profile row">
 					<div class="col">
 						<br style="line-height:6">
-						<a href="createVenue.php?gym_id=<?php echo $ID; ?>"class="aHREF">
+						<a style="color:black;" href="createVenue.php?gym_id=<?php echo $ID; ?>"class="aHREF">
 							<div class="gymBox">
                                 <i id="addGymIcon" class="bi bi-plus-circle"></i>	
 							<br><br>
@@ -517,7 +517,8 @@ tr:nth-child(even) {
                                 
                         ?>
 						<a href="manageGymInfo.php?userid=<?php echo $ID ?>&gym_id=<?php echo $row['gym_id']?>" class="aHREF">
-							<div class="gymBox">
+							<div class="gymBox" style="color:black;">
+              <i style="float:right; color:red;" class="bi bi-trash-fill"></i>
 								<div class="gymImgBox">
 									<img src="gym_picture/<?php echo $row['gym_picture']?>">
 								</div><br>
