@@ -122,8 +122,8 @@ $row = mysqli_num_rows($gymresult);
 						<h3><?php echo $row['gym_name']; ?></h3><br>
 						<div class="imgBox">
 							<img src="gym_picture/<?php echo $row['gym_picture']?>">
-						</div>
-						<p class="price">Price:<?php echo $row['gym_price']?></p>
+						</div><br>
+						<p class="price">Price:<?php echo $row['gym_price']?></p><br>
 						<h5 class="gymDetails">Details:</h5>
 						<p class="details">
 						<i class="bi bi-person-fill"></i><?php echo $row['gym_contactperson']?> <br>

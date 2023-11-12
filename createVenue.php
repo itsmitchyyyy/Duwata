@@ -39,7 +39,7 @@ $row = mysqli_num_rows($gymresult);
                   <input class="venueInfo" type="number" name="gym_contactnumber" placeholder="Contact No" required><br><br>
                   <input class="venueInfo" type="email" name="gym_email" placeholder="Email" required><br><br>
                   <div>
-                    <select name="gym_sports">
+                    <select name="gym_sports" style=" border: 1px solid gray; width: 100%; height: 50px; border-radius: 25px; text-align: center;">
                               <?php
                               
                               $sports = "SELECT * FROM sports";
@@ -51,7 +51,7 @@ $row = mysqli_num_rows($gymresult);
                             ?>
                         <option value="<?php echo $sportname; ?>"><?php echo $sportname; ?></option>
                         <?php }} ?>
-                    </select>
+                    </select><br><br>
                   </div>
                   <input class="venueInfo" type="number" name="gym_price" placeholder="Price Rate" required><br><br>
                   <textarea rows="5" class="venueInfo1" type="text" name="gym_rules" placeholder="Rules and Regulation" required></textarea>
