@@ -119,6 +119,7 @@ $row = mysqli_num_rows($gymresult);
 						<br style="line-height:2">
 						<a href="home.php?userid=<?php echo $ID; ?>" ><i style="float:left; color: black;" class="bi bi-arrow-left"></i></a>
 						<br><br style="line-height:1">
+                        <a href="editgyminfo.php"><i style="float:right; color: black;" class="bi bi-pencil-fill"></i></a>
 						<h3><?php echo $row['gym_name']; ?></h3><br>
 						<div class="imgBox">
 							<img src="gym_picture/<?php echo $row['gym_picture']?>">
