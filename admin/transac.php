@@ -21,9 +21,11 @@
                     <span class="fas fa-bars" id="bars"></span>
                 </label>
                 <ol>
-                    <li><a href="home.php?adminID=<?php echo  $adID?>">Manage players</a></li>
-                    <li><a href="gym.php?adminID=<?php echo $adID?>">Manage Gym Owners</a></li>
-                    <li><a href="transac.php?AdminID=<?php echo $adID?>">Manage Transaction</a></li>
+                    <li><a href="home.php?adminID=<?php echo  $adID?>">Players</a></li>
+                    <li><a href="gym.php?adminID=<?php echo $adID?>">Gym Owners</a></li>
+                    <li><a href="gym2.php">Gym</a></li>
+                    <li><a href="transac.php?AdminID=<?php echo $adID?>">Transaction</a></li>
+                    <li><a href="sports.php">Sports</a></li>
                 </ol>
             </div>
             <img src="images/duwata.png" class="user-logo">
