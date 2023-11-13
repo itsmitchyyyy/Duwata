@@ -1,3 +1,15 @@
+<?php 
+
+require('dbconn.php');
+if (isset($_GET['sportName'])) {
+
+    $sportName = $_GET['sportName'];
+
+    $fetch = "SELECT * FROM gym WHERE gym_sports='$sportName'";
+    $gyms = mysqli_query($conn, $fetch);
+}
+?>
+
 <!DOCTYPE html>
 <head>
     <title>Gym Info</title>
@@ -93,10 +105,32 @@
                 </div>
             </nav>
 			<div class="container-fluid d-flex justify-content-center align-items-center">
+                
 				<div class="edit-profile row">
 					<div class="col">
 						<br style="line-height:2">
-						<a href="viewGymInfo.php" class="aHREF">
+                        <?php while($rows=mysqli_fetch_array($gyms)) { ?>
+                            <a href="viewGymInfo.php" class="aHREF">
+							<div id="gymBox">
+								<div id="gymImgBox">
+									<img src="tabletennis.jpg">
+								</div>
+								<p>Price: 500</p>
+                                <label id="gymName"><?php echo $rows['gym_name'] ?></label>
+								<i class="bi bi-circle-fill" id="status"></i><br>
+								<i class="bi bi-star"></i>
+								<i class="bi bi-star"></i>
+								<i class="bi bi-star"></i>
+								<i class="bi bi-star"></i>
+								<i class="bi bi-star"></i>
+								<br><br>
+								<p class="gymInfo">Address: 51 Osmeña BLVD, Cebu City, Cebu<br>
+								Phone: (032) 253 4057</p>
+							</div>
+						</a>
+
+                        <?php } ?>
+						<!-- <a href="viewGymInfo.php" class="aHREF">
 							<div id="gymBox">
 								<div id="gymImgBox">
 									<img src="tabletennis.jpg">
@@ -132,7 +166,7 @@
 								<p class="gymInfo">Address: 51 Osmeña BLVD, Cebu City, Cebu<br>
 								Phone: (032) 253 4057</p>
 							</div>
-						</a>
+						</a> -->
 					</div>
 				</div>
 			</div>

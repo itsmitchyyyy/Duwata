@@ -7,6 +7,9 @@ $fetch = "SELECT * FROM players WHERE playerID='$playID'";
 $playerresult = mysqli_query($conn, $fetch);
 $row = mysqli_num_rows($playerresult);
 
+$fetchSports = "SELECT * FROM sports";
+$sports = mysqli_query($conn, $fetchSports);
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -109,11 +112,14 @@ $row = mysqli_num_rows($playerresult);
                 
 				<div class="edit-profile row">
 					<ul id="sportsList">
-						<a href="listOfVenues.php">
-						  <li class="sport" id="basketball">
-                              basketball
-						  </li>
+						<?php while($rowSports=mysqli_fetch_array($sports)) { ?>
+                        
+                            <?php echo "<a href=listOfVenues.php?sportName=".$rowSports['sport_name'].">" ?>
+                                <li class="sport" id="basketball">
+                                    <?php echo $rowSports['sport_name'] ?>
+                                </li>
 						</a>
+                            <?php } ?>
 					</ul>
 				</div>
               
