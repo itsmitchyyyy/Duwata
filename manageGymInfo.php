@@ -8,6 +8,18 @@ $selectgym = "SELECT * FROM gym WHERE gym_id={$gymID}";
 $gymresult = mysqli_query($conn, $selectgym);
 $row = mysqli_num_rows($gymresult);
 
+
+
+$sql = "SELECT date FROM schedule WHERE status = 'open'";
+$result = mysqli_query($conn, $sql);
+$bookedDates = array();
+$resultRow = mysqli_num_rows($result);
+if ($resultRow > 0) {
+    while ($bookRow = mysqli_fetch_assoc($result)) {
+        $bookedDates[] = $bookRow['date'];
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -25,12 +37,83 @@ $row = mysqli_num_rows($gymresult);
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
      <!-- Bootstrap Font Icon CSS -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
+
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+     <script>
+
+        $(function () {
+            var bookedDates = <?php echo json_encode($bookedDates); ?>;
+            $("#calendar").datepicker({
+                dateFormat: 'yy-mm-dd',
+                minDate: 0, // Set minimum date to today
+                beforeShowDay: function (date) {
+                    var stringDate = $.datepicker.formatDate('yy-mm-dd', date);
+                    
+                    // Check if the date is in the booked dates array
+                    if (bookedDates.indexOf(stringDate) !== -1) {
+                        // If the date is booked, check if all time slots are taken
+                        return isAllTimeSlotsBooked(stringDate) ? [false, 'fully-booked'] : [true, ''];
+                    }
+                    return [true, ''];
+                },
+                onSelect: function (dateText, inst) {
+                    var selectedDate = $(this).val();
+                    window.location.href = 'manageBookingTime.php?date=' + selectedDate;
+                }
+            });
+        });
+
+        function isAllTimeSlotsBooked(selectedDate) {
+            // Logic to check if all time slots for the selected date are booked
+            // Perform an AJAX call or fetch data to check the booked time slots for the selected date
+            // Return true if all time slots are booked, otherwise return false
+            // This part would need to be implemented based on your specific database structure
+            // and the way time slots are booked.
+            // Here is just a placeholder logic:
+
+            // Example: Assuming the time slots for a day are '7:00', '8:00', '9:00', ... '23:00'
+            var allTimeSlots = ['7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'];
+            var bookedTimeSlotsForDate = ['8:00', '9:00', '10:00']; // Placeholder: Simulated booked time slots for the selected date
+
+            for (var i = 0; i < allTimeSlots.length; i++) {
+                if (bookedTimeSlotsForDate.indexOf(allTimeSlots[i]) === -1) {
+                    return false; // At least one time slot is available
+                }
+            }
+            return true; // All time slots are booked
+        }
+     </script>
 </head>
 <style>
 	a {
       text-decoration: none;
       color: #262626;
     }
+
+    .ui-datepicker-calendar td.fully-booked a {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .calendar-container {
+            display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 5em;
+        }
+
+        #calendar {
+            display: flex;
+            justify-content: center;
+        }
+
+      .gym-container {
+        text-align: center;
+        width: 50%;
+        padding: 10px;
+      }
 </style>
 <body>
     <div class="d-flex" id="wrapper">
@@ -107,7 +190,7 @@ $row = mysqli_num_rows($gymresult);
                        
 
 			<div class="container-fluid d-flex justify-content-center align-items-center">
-				<div class="edit-profile row">
+				<div class="gym-container row">
                 
 					<div class="col">
                     <?php
@@ -133,13 +216,10 @@ $row = mysqli_num_rows($gymresult);
 						<i class="bi bi-geo-alt-fill"></i> <?php echo $row['gym_location']?>
 						</p>
                         </div>
-						<div>
+						
+                        <div class="calendar-container">
                             <h5>Calendar</h5>
-                            <div>
-                            <a href="gymcalendar.php?userid=<?php echo $ID ?>&gym_id=<?php echo $row['gym_id']?>"> 
-                                <img src="calendar-icon.png" alt="Calendar Icon" width="100" height="100">
-                            </a>
-                            </div>
+                            <div id="calendar"></div>
 					    </div>
 					<h5>Minimap</h5>
 					<div class="imgBox">
@@ -149,7 +229,6 @@ $row = mysqli_num_rows($gymresult);
                             
                         } }
                         ?>
-					<br><br>
 				</div>
 			</div>
         </div>

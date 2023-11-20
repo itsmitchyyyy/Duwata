@@ -110,7 +110,7 @@ if (isset($_GET['sportName'])) {
 					<div class="col">
 						<br style="line-height:2">
                         <?php while($rows=mysqli_fetch_array($gyms)) { ?>
-                            <a href="viewGymInfo.php" class="aHREF">
+                            <a href="viewGymInfo.php?sportName=<?php echo $_GET['sportName'] ?>&gymId=<?php echo $rows['gym_id'] ?>" class="aHREF">
 							<div id="gymBox">
 								<div id="gymImgBox">
 									<img src="tabletennis.jpg">

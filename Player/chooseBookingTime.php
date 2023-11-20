@@ -1,3 +1,21 @@
+
+
+<?php 
+require("dbconn.php");
+
+$sql = "SELECT * FROM schedule WHERE schedule.date = '".$_GET['date']."'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+
+$scheduleTimeRow = [];
+if (isset($row)) {
+	$scheduleTimeSql = "SELECT * FROM schedule_time WHERE schedule_id = '".$row['id']."'";
+	$scheduleTimeResult = mysqli_query($conn, $scheduleTimeSql);
+	$scheduleTimeRow = $scheduleTimeResult->fetch_all(MYSQLI_ASSOC);
+}
+
+?>
+
 <html>
 	<head>
 	<meta charset="UTF-8">
@@ -35,19 +53,19 @@
 				
 				<div class="time-slot">
 				  <span>6:00 - 7:00</span>
-				  <i class="bi bi-square-fill icon"></i>
+				  <input type="checkbox">
 				</div>
 				<div class="time-slot">
 				  <span>7:00 - 8:00</span>
-				  <i class="bi bi-square-fill icon"></i>
+				  <input type="checkbox">
 				</div>
 				<div class="time-slot">
 				  <span>8:00 - 9:00</span>
-				  <i class="bi bi-square-fill icon"></i>
+				  <input type="checkbox">
 				</div>
 				<div class="time-slot">
 				  <span>9:00 - 10:00</span>
-				  <i class="bi bi-square-fill icon"></i>
+				  <input type="checkbox">
 				</div>
 				<br><br>
 				
@@ -55,19 +73,19 @@
 				<br>
 				<div class="time-slot">
 				  <span>1:00 - 2:00</span>
-				  <i class="bi bi-square-fill icon"></i>
+				  <input type="checkbox">
 				</div>
 				<div class="time-slot">
 				  <span>2:00 - 3:00</span>
-				  <i class="bi bi-square-fill icon"></i>
+				  <input type="checkbox">
 				</div>
 				<div class="time-slot">
 				  <span>3:00 - 4:00</span>
-				  <i class="bi bi-square-fill icon"></i>
+				  <input type="checkbox">
 				</div>
 				<div class="time-slot">
 				  <span>4:00 - 5:00</span>
-				  <i class="bi bi-square-fill icon"></i>
+				  <input type="checkbox">
 				</div>
 				<br><br>
 				
@@ -75,15 +93,15 @@
 				<br>
 				<div class="time-slot">
 				  <span>6:00 - 7:00</span>
-				  <i class="bi bi-square-fill icon"></i>
+				  <input type="checkbox">
 				</div>
 				<div class="time-slot">
 				  <span>7:00 - 8:00</span>
-				  <i class="bi bi-square-fill icon"></i>
+				  <input type="checkbox">
 				</div>
 				<div class="time-slot">
 				  <span>8:00 - 9:00</span>
-				  <i class="bi bi-square-fill icon"></i>
+				  <input type="checkbox">
 				</div>
 				<br><br>
 				
