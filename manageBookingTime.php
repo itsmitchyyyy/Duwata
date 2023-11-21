@@ -91,7 +91,7 @@
       <div class="edit-profile row">
         <div class="col">
 		<br style="line-height:2">
-		<a href="manageGymInfo.php"><i class="bi bi-arrow-left"></i></a>
+		<a href="manageGymInfo.php?userid=<?php echo $_GET['userid'] ?>"><i class="bi bi-arrow-left"></i></a>
 		<br><br style="line-height:1">
 			<center>
 			<h2 class="bookingTime">Manage Booking<br> Time</h2>
