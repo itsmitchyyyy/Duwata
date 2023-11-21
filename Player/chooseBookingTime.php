@@ -2,7 +2,23 @@
 
 <?php 
 session_start();
+
+
 require("dbconn.php");
+require  '../vendor/autoload.php';
+
+
+$options = array(
+    'cluster' => 'ap1',
+    'useTLS' => true
+  );
+
+  $pusher = new Pusher\Pusher(
+    'e46647b2f0c1a7819b8f',
+    'b9d5317dc39f9a08e6f2',
+    '1711672',
+    $options
+  );
 
 if (isset($_GET['gymId'])) {
 
@@ -27,13 +43,14 @@ if (isset($scheduleRow)) {
 }
 
 if (isset($_POST['bookNow']) || isset($_POST['schedule_time_id'])) {
-
 	$scheduleTimeId = $_POST['schedule_time_id'];
 	$bookingScheduleInsertSql = "INSERT INTO booking_schedule (schedule_time_Id, playerId) VALUES('".$scheduleTimeId."', '".$_SESSION['player_id']."')";
 	if ($conn->query($bookingScheduleInsertSql)) {
 
 		$updateScheduleTimeSql = "UPDATE schedule_time SET status = 'booked' WHERE id = ".$scheduleTimeId;
 		if ($conn->query($updateScheduleTimeSql)) {
+			$data['message'] = 'There is a new booking';
+			$pusher->trigger('booking-channel', 'booking-event', $data);
 			header("Location: viewGymInfo.php?sportName=".$_GET['sportName']."&gymId=".$gymId);
 		}
 	}
