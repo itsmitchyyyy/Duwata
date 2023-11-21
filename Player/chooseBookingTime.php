@@ -30,7 +30,7 @@ if (isset($_GET['gymId'])) {
 }
 
 $selectedDate = date('F j, Y', strtotime($_GET['date']));
-$sql = "SELECT * FROM schedule WHERE schedule.date = '".$_GET['date']."'";
+$sql = "SELECT * FROM schedule WHERE schedule.gym_id = '".$gymId."' AND schedule.date = '".$_GET['date']."'";
 $result = mysqli_query($conn, $sql);
 $scheduleRow = mysqli_fetch_assoc($result);
 
@@ -60,7 +60,7 @@ if (isset($_POST['bookNow']) || isset($_POST['schedule_time_id'])) {
 			$notificationSql = "INSERT INTO notifications (playerId, message) VALUES('".$_SESSION['player_id']."', '".$data['message']."')";
 			if ($conn->query($notificationSql)) {
 				$pusher->trigger('booking-channel', 'booking-event', $data);
-				header("Location: viewGymInfo.php?sportName=".$_GET['sportName']."&gymId=".$gymId);
+				header("Location: payment.php");
 			}
 		}
 	}

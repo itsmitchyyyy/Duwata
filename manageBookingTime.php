@@ -2,6 +2,8 @@
 
 	require("dbconn.php");
 
+	
+	$gymID = $_GET['gymId'];
 	$selectedDate = date('F j, Y', strtotime($_GET['date']));
 	$sql = "SELECT * FROM schedule WHERE schedule.date = '".$_GET['date']."'";
 	$result = mysqli_query($conn, $sql);
@@ -26,7 +28,7 @@
 				echo "<meta http-equiv='refresh' content='0'>";
 			}
 		} else {
-			$scheduleInsertSql = "INSERT INTO schedule (date, status) VALUES('".$_GET['date']."', 'open')";
+			$scheduleInsertSql = "INSERT INTO schedule (gym_id, date, status) VALUES('".$gymID."', '".$_GET['date']."', 'open')";
 			if ($conn->query($scheduleInsertSql)) {
 				$scheduleTimeInsertSql = "INSERT INTO schedule_time (schedule_id, time_start, time_end) VALUES('".$conn->insert_id."', '".$startTime."', '".$startEnd."')";
 				if ($conn->query($scheduleTimeInsertSql)) {

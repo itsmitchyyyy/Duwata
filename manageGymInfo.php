@@ -89,7 +89,7 @@ if ($resultRow > 0) {
                 },
                 onSelect: function (dateText, inst) {
                     var selectedDate = $(this).val();
-                    window.location.href = 'manageBookingTime.php?date=' + selectedDate;
+                    window.location.href = 'manageBookingTime.php?date=' + selectedDate + '&gymId=<?php echo $gymID ?>&userid=<?php echo $ID ?>';
                 }
             });
         });
