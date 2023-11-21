@@ -41,6 +41,35 @@ if ($resultRow > 0) {
      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <script>
+         $(document).ready(function(){
+            $(".notification_icon .bi-bell").click(function(){
+                $(".dropdown").toggleClass("active");
+            });
+        });
+     </script>
+     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+      <script>
+        $(function () {
+         
+          var pusher = new Pusher('e46647b2f0c1a7819b8f', {
+            cluster: 'ap1'
+          });
+
+          var channel = pusher.subscribe('booking-channel');
+          channel.bind('booking-event', function(data) {
+            $('#notificationBell').addClass('notificationActive');
+            var counter = $('#notificationCounter').html();
+
+            $('#notificationCounter').html(Number(counter) + 1);
+          });
+        })
+
+        
+      </script>
+
      <script>
 
         $(function () {
@@ -85,7 +114,7 @@ if ($resultRow > 0) {
             return true; // All time slots are booked
         }
      </script>
-</head>
+
 <style>
 	a {
       text-decoration: none;
@@ -114,7 +143,24 @@ if ($resultRow > 0) {
         width: 50%;
         padding: 10px;
       }
+
+      .notificationCounter {
+        position: absolute;
+        color: white;
+        top: 12px;
+        right: 41px;
+        bottom: 0;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .notificationActive {
+        color: red;
+      }
 </style>
+</head>
+
 <body>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
@@ -184,7 +230,9 @@ if ($resultRow > 0) {
                 <div class="notif d-flex">
                     <a href="transac.php?userid=<?php echo $ID; ?>"><i class="bi bi-bookmark-fill"></i></a>
                     <a href="messageContacts.php?userid=<?php echo $ID; ?>"><i class="bi bi-chat-left-dots-fill"></i></a>
-                    <a href="#"><i class="bi bi-bell-fill"></i></a>
+                    <a href="notification.php?userid=<?php echo $ID; ?>"><i class="bi bi-bell-fill" id="notificationBell">
+                      <span class="notificationCounter" id="notificationCounter"></span>
+                    </i></a>
                 </div>
             </nav>
                        

@@ -2,7 +2,7 @@
 
 <?php 
 session_start();
-
+date_default_timezone_set('Asia/Manila');
 
 require("dbconn.php");
 require  '../vendor/autoload.php';
@@ -36,10 +36,15 @@ $scheduleRow = mysqli_fetch_assoc($result);
 
 
 $scheduleTimeRow = [];
+$statusButton = [];
 if (isset($scheduleRow)) {
 	$scheduleTimeSql = "SELECT * FROM schedule_time WHERE schedule_id = ".$scheduleRow['id'];
 	$scheduleTimeResult = mysqli_query($conn, $scheduleTimeSql);
 	$scheduleTimeRow = $scheduleTimeResult->fetch_all(MYSQLI_ASSOC);
+
+	foreach($scheduleTimeRow as $statusRow) {
+		array_push($statusButton, $statusRow['status'] == 'booked');
+	}
 }
 
 if (isset($_POST['bookNow']) || isset($_POST['schedule_time_id'])) {
@@ -49,12 +54,18 @@ if (isset($_POST['bookNow']) || isset($_POST['schedule_time_id'])) {
 
 		$updateScheduleTimeSql = "UPDATE schedule_time SET status = 'booked' WHERE id = ".$scheduleTimeId;
 		if ($conn->query($updateScheduleTimeSql)) {
-			$data['message'] = 'There is a new booking';
-			$pusher->trigger('booking-channel', 'booking-event', $data);
-			header("Location: viewGymInfo.php?sportName=".$_GET['sportName']."&gymId=".$gymId);
+			$data['message'] =  $_SESSION['player_name']." has added a booking";
+			$data['createdAt'] = date('g:i A');
+
+			$notificationSql = "INSERT INTO notifications (playerId, message) VALUES('".$_SESSION['player_id']."', '".$data['message']."')";
+			if ($conn->query($notificationSql)) {
+				$pusher->trigger('booking-channel', 'booking-event', $data);
+				header("Location: viewGymInfo.php?sportName=".$_GET['sportName']."&gymId=".$gymId);
+			}
 		}
 	}
 }
+
 
 $conn->close();
 
@@ -103,7 +114,7 @@ $conn->close();
 				<?php } ?>
 				<br><br>
 				
-					<input type="submit" name="bookNow" class="continue" value="Book now" />
+					<input type="submit" name="bookNow" class="continue" value="Book now" <?php echo in_array(false, $statusButton, true) === false ? 'disabled' : '' ?> />
 				</form>
 				</center>
 			</div>

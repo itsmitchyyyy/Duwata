@@ -23,16 +23,7 @@ $row = mysqli_num_rows($result);
      <!-- Bootstrap Font Icon CSS -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
      <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-     <script>
-         $(document).ready(function(){
-            $(".notification_icon .bi-bell").click(function(){
-                $(".dropdown").toggleClass("active");
-            });
-        });
-     </script>
-</head>
-<style>
+     <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 body{
@@ -384,6 +375,22 @@ tr:nth-child(even) {
     height: 100%;
     border-radius: 70px;
 }
+
+.notificationCounter {
+        position: absolute;
+        color: white;
+        top: 12px;
+        right: 41px;
+        bottom: 0;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .notificationActive {
+        color: red;
+      }
+
 @media screen and (max-width: 768px){
       #sidebar-wrapper {
         margin-left: 0;
@@ -409,9 +416,37 @@ tr:nth-child(even) {
         max-height: 80%;
         padding: 10px;
       }
-      
 }
 </style>
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <script>
+         $(document).ready(function(){
+            $(".notification_icon .bi-bell").click(function(){
+                $(".dropdown").toggleClass("active");
+            });
+        });
+     </script>
+     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+      <script>
+        $(function () {
+         
+          var pusher = new Pusher('e46647b2f0c1a7819b8f', {
+            cluster: 'ap1'
+          });
+
+          var channel = pusher.subscribe('booking-channel');
+          channel.bind('booking-event', function(data) {
+            $('#notificationBell').addClass('notificationActive');
+            var counter = $('#notificationCounter').html();
+
+            $('#notificationCounter').html(Number(counter) + 1);
+          });
+        })
+
+        
+      </script>
+</head>
+
 <body>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
@@ -490,7 +525,9 @@ tr:nth-child(even) {
                 <div class="notif d-flex">
                     <a href="transac.php?userid=<?php echo $ID; ?>"><i class="bi bi-bookmark-fill"></i></a>
                     <a href="messageContacts.php?userid=<?php echo $ID; ?>"><i class="bi bi-chat-left-dots-fill"></i></a>
-                    <a href="notification.php?userid=<?php echo $ID; ?>"><i class="bi bi-bell-fill"></i></a>
+                    <a href="notification.php?userid=<?php echo $ID; ?>"><i class="bi bi-bell-fill" id="notificationBell">
+                      <span class="notificationCounter" id="notificationCounter"></span>
+                    </i></a>
                 </div>
             </nav>
 			<div class="container-fluid d-flex justify-content-center align-items-center">

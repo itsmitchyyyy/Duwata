@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Authentication successful, set a session variable to indicate the user is logged in
                 $_SESSION["logged_in"] = true;
                 $_SESSION['player_id'] = $playerResult['playerID'];
+                $_SESSION['player_name'] = $playerResult['player_firstname'].' '.$playerResult['player_middlename'].' '.$playerResult['player_lastname'];
                 // Redirect the user to the admin_index.php page
                 header("Location: sportschoices.php?playerID=".$playerResult['playerID']);
                 exit(); // Stop script execution after successful login

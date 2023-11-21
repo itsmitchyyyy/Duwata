@@ -26,10 +26,53 @@ $sports = mysqli_query($conn, $fetchSports);
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
      <!-- Bootstrap Font Icon CSS -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"> 
-</head>
-<style>
 
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <script>
+         $(document).ready(function(){
+            $(".notification_icon .bi-bell").click(function(){
+                $(".dropdown").toggleClass("active");
+            });
+        });
+     </script>
+     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+      <script>
+        $(function () {
+         
+          var pusher = new Pusher('e46647b2f0c1a7819b8f', {
+            cluster: 'ap1'
+          });
+
+          var channel = pusher.subscribe('booking-channel');
+          channel.bind('booking-event', function(data) {
+            $('#notificationBell').addClass('notificationActive');
+            var counter = $('#notificationCounter').html();
+
+            $('#notificationCounter').html(Number(counter) + 1);
+          });
+        })
+
+        
+      </script>
+
+<style>
+.notificationCounter {
+        position: absolute;
+        color: white;
+        top: 12px;
+        right: 41px;
+        bottom: 0;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .notificationActive {
+        color: red;
+      }
 </style>
+    </head>
+
 <body>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
@@ -105,7 +148,9 @@ $sports = mysqli_query($conn, $fetchSports);
                 <div class="notif d-flex">
                     <a href="transac.php"><i class="bi bi-bookmark-fill"></i></a>
                     <a href="messageContacts.php"><i class="bi bi-chat-left-dots-fill"></i></a>
-                    <a href="#"><i class="bi bi-bell-fill"></i></a>
+                    <a href="notification.php?userid=<?php echo $ID; ?>"><i class="bi bi-bell-fill" id="notificationBell">
+                      <span class="notificationCounter" id="notificationCounter"></span>
+                    </i></a>
                 </div>
             </nav>
 			<div class="container-fluid d-flex justify-content-center align-items-center">
