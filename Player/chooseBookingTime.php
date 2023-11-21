@@ -1,18 +1,45 @@
 
 
 <?php 
+session_start();
 require("dbconn.php");
 
+if (isset($_GET['gymId'])) {
+
+    $gymId = $_GET['gymId'];
+  
+    $fetch = "SELECT * FROM gym WHERE gym_id = '".$gymId."'";
+    $gyms = mysqli_query($conn, $fetch);
+    $row = mysqli_fetch_assoc($gyms);
+}
+
+$selectedDate = date('F j, Y', strtotime($_GET['date']));
 $sql = "SELECT * FROM schedule WHERE schedule.date = '".$_GET['date']."'";
 $result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
+$scheduleRow = mysqli_fetch_assoc($result);
+
 
 $scheduleTimeRow = [];
-if (isset($row)) {
-	$scheduleTimeSql = "SELECT * FROM schedule_time WHERE schedule_id = '".$row['id']."'";
+if (isset($scheduleRow)) {
+	$scheduleTimeSql = "SELECT * FROM schedule_time WHERE schedule_id = ".$scheduleRow['id'];
 	$scheduleTimeResult = mysqli_query($conn, $scheduleTimeSql);
 	$scheduleTimeRow = $scheduleTimeResult->fetch_all(MYSQLI_ASSOC);
 }
+
+if (isset($_POST['bookNow']) || isset($_POST['schedule_time_id'])) {
+
+	$scheduleTimeId = $_POST['schedule_time_id'];
+	$bookingScheduleInsertSql = "INSERT INTO booking_schedule (schedule_time_Id, playerId) VALUES('".$scheduleTimeId."', '".$_SESSION['player_id']."')";
+	if ($conn->query($bookingScheduleInsertSql)) {
+
+		$updateScheduleTimeSql = "UPDATE schedule_time SET status = 'booked' WHERE id = ".$scheduleTimeId;
+		if ($conn->query($updateScheduleTimeSql)) {
+			header("Location: viewGymInfo.php?sportName=".$_GET['sportName']."&gymId=".$gymId);
+		}
+	}
+}
+
+$conn->close();
 
 ?>
 
@@ -40,77 +67,28 @@ if (isset($row)) {
 		<div class="edit-profile row">
 			<div class="col">
 				<br style="line-height:2">
-				<a href="viewGymInfo.php"><i class="bi bi-arrow-left"></i></a>
+				<a href="viewGymInfo.php?sportName=<?php echo $_GET['sportName'] ?>&gymId=<?php echo $gymId ?>"><i class="bi bi-arrow-left"></i></a>
 				<br><br style="line-height:1">
 				<center>
-				<h3>YMCA HOSTEL CEBU</h3>
+				<h3><?php echo $row['gym_name'] ?></h3>
 				<br>
-				<h5 class="date">NOVEMBER 3, 2023</h5>
+				<h5 class="date"><?php echo $selectedDate ?></h5>
 				<br><br>
 				</center>
-				<label class="timeSched"> Morning Schedule - AM </label>
+				<label class="timeSched">Available Schedules</label>
 				<br>
-				
-				<div class="time-slot">
-				  <span>6:00 - 7:00</span>
-				  <input type="checkbox">
-				</div>
-				<div class="time-slot">
-				  <span>7:00 - 8:00</span>
-				  <input type="checkbox">
-				</div>
-				<div class="time-slot">
-				  <span>8:00 - 9:00</span>
-				  <input type="checkbox">
-				</div>
-				<div class="time-slot">
-				  <span>9:00 - 10:00</span>
-				  <input type="checkbox">
-				</div>
+				<form method="post">
+				<?php foreach($scheduleTimeRow as $scheduleTime) { ?>
+					<div class="time-slot">
+						<span><?php echo date('H:i',strtotime($scheduleTime['time_start']))  ?> - <?php echo date('H:i',strtotime($scheduleTime['time_end']))  ?></span>
+						<input type="radio" name="schedule_time_id" value="<?php echo $scheduleTime['id'] ?>" <?php echo $scheduleTime['status'] == 'booked' ? 'disabled' : '' ?>>
+					</div>
+				<?php } ?>
 				<br><br>
 				
-				<label class="timeSched"> Afternoon Schedule - PM </label>
-				<br>
-				<div class="time-slot">
-				  <span>1:00 - 2:00</span>
-				  <input type="checkbox">
-				</div>
-				<div class="time-slot">
-				  <span>2:00 - 3:00</span>
-				  <input type="checkbox">
-				</div>
-				<div class="time-slot">
-				  <span>3:00 - 4:00</span>
-				  <input type="checkbox">
-				</div>
-				<div class="time-slot">
-				  <span>4:00 - 5:00</span>
-				  <input type="checkbox">
-				</div>
-				<br><br>
-				
-				<label class="timeSched"> Evening Schedule - PM </label>
-				<br>
-				<div class="time-slot">
-				  <span>6:00 - 7:00</span>
-				  <input type="checkbox">
-				</div>
-				<div class="time-slot">
-				  <span>7:00 - 8:00</span>
-				  <input type="checkbox">
-				</div>
-				<div class="time-slot">
-				  <span>8:00 - 9:00</span>
-				  <input type="checkbox">
-				</div>
-				<br><br>
-				
-				<center>
-				<h4>Provide Payment</h4>
-				
-				<button class="continue">Continue</button>
+					<input type="submit" name="bookNow" class="continue" value="Book now" />
+				</form>
 				</center>
-				<br><br>
 			</div>
 		</div>
 	</div>

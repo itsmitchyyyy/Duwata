@@ -56,7 +56,7 @@ if (isset($_GET['gymId'])) {
                 },
                 onSelect: function (dateText, inst) {
                     var selectedDate = $(this).val();
-                    window.location.href = 'chooseBookingTime.php?date=' + selectedDate;
+                    window.location.href = 'chooseBookingTime.php?date=' + selectedDate + '&gymId=<?php echo $gymId ?>&sportName=<?php echo $_GET['sportName'] ?>';
                 }
             });
         });
@@ -70,7 +70,7 @@ if (isset($_GET['gymId'])) {
             // Here is just a placeholder logic:
 
             // Example: Assuming the time slots for a day are '7:00', '8:00', '9:00', ... '23:00'
-            var allTimeSlots = ['7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'];
+            var allTimeSlots = ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'];
             var bookedTimeSlotsForDate = ['8:00', '9:00', '10:00']; // Placeholder: Simulated booked time slots for the selected date
 
             for (var i = 0; i < allTimeSlots.length; i++) {
@@ -85,6 +85,10 @@ if (isset($_GET['gymId'])) {
         .ui-datepicker-calendar td.fully-booked a {
             pointer-events: none;
             opacity: 0.6;
+        }
+
+        .center-container.padding {
+            padding: 2em 0;
         }
     </style>
 	</head>
@@ -104,9 +108,9 @@ if (isset($_GET['gymId'])) {
 				<h3>Location</h3>
 				<div class="imgBox">
 					<img src="../gym_map/<?php echo $row['map_picture'] ?>">
-				</div><br>
+				</div><br><br>
 				<h3>Choose your preffered date for booking</h3>
-				<div class="center-container">
+				<div class="center-container padding">
 						<div id="calendar"></div>
 					  </div>
 				</center>
