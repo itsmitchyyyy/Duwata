@@ -5,20 +5,20 @@ session_start();
 date_default_timezone_set('Asia/Manila');
 
 require("dbconn.php");
-require  '../vendor/autoload.php';
+// require  '../vendor/autoload.php';
 
 
-$options = array(
-    'cluster' => 'ap1',
-    'useTLS' => true
-  );
+// $options = array(
+//     'cluster' => 'ap1',
+//     'useTLS' => true
+//   );
 
-  $pusher = new Pusher\Pusher(
-    'e46647b2f0c1a7819b8f',
-    'b9d5317dc39f9a08e6f2',
-    '1711672',
-    $options
-  );
+//   $pusher = new Pusher\Pusher(
+//     'e46647b2f0c1a7819b8f',
+//     'b9d5317dc39f9a08e6f2',
+//     '1711672',
+//     $options
+//   );
 
 if (isset($_GET['gymId'])) {
 
@@ -49,21 +49,25 @@ if (isset($scheduleRow)) {
 
 if (isset($_POST['bookNow']) || isset($_POST['schedule_time_id'])) {
 	$scheduleTimeId = $_POST['schedule_time_id'];
-	$bookingScheduleInsertSql = "INSERT INTO booking_schedule (schedule_time_Id, playerId) VALUES('".$scheduleTimeId."', '".$_SESSION['player_id']."')";
-	if ($conn->query($bookingScheduleInsertSql)) {
+	$_SESSION['booking_schedule_details'] = ['schedule_time_Id' => $scheduleTimeId, 'playerId' => $_SESSION['player_id']];
+	$_SESSION['schedule_time_details'] = ['status' => 'booked', 'id' => $scheduleTimeId];
 
-		$updateScheduleTimeSql = "UPDATE schedule_time SET status = 'booked' WHERE id = ".$scheduleTimeId;
-		if ($conn->query($updateScheduleTimeSql)) {
-			$data['message'] =  $_SESSION['player_name']." has added a booking";
-			$data['createdAt'] = date('g:i A');
+	header("Location: payment.php");
+	// $bookingScheduleInsertSql = "INSERT INTO booking_schedule (schedule_time_Id, playerId) VALUES('".$scheduleTimeId."', '".$_SESSION['player_id']."')";
+	// if ($conn->query($bookingScheduleInsertSql)) {
 
-			$notificationSql = "INSERT INTO notifications (playerId, message) VALUES('".$_SESSION['player_id']."', '".$data['message']."')";
-			if ($conn->query($notificationSql)) {
-				$pusher->trigger('booking-channel', 'booking-event', $data);
-				header("Location: payment.php");
-			}
-		}
-	}
+	// 	$updateScheduleTimeSql = "UPDATE schedule_time SET status = 'booked' WHERE id = ".$scheduleTimeId;
+	// 	if ($conn->query($updateScheduleTimeSql)) {
+	// 		$data['message'] =  $_SESSION['player_name']." has added a booking";
+	// 		$data['createdAt'] = date('g:i A');
+
+	// 		$notificationSql = "INSERT INTO notifications (playerId, message) VALUES('".$_SESSION['player_id']."', '".$data['message']."')";
+	// 		if ($conn->query($notificationSql)) {
+	// 			$pusher->trigger('booking-channel', 'booking-event', $data);
+	// 			header("Location: payment.php");
+	// 		}
+	// 	}
+	// }
 }
 
 
