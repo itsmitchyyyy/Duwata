@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +18,7 @@
     
     <div class="card p-5 w-50">
         <h3>Successfully paid</h3>
+        <a class="btn btn-primary" href="sportschoices.php?playerID=<?php echo $_SESSION['player_id'] ?>">Done</a>
     </div>
 </body>
 </html>

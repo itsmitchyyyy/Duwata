@@ -5,7 +5,7 @@
 	
 	$gymID = $_GET['gymId'];
 	$selectedDate = date('F j, Y', strtotime($_GET['date']));
-	$sql = "SELECT * FROM schedule WHERE schedule.date = '".$_GET['date']."'";
+	$sql = "SELECT * FROM schedule WHERE gym_id = '".$gymID."' AND schedule.date = '".$_GET['date']."'";
 	$result = mysqli_query($conn, $sql);
 	$row = mysqli_fetch_assoc($result);
 
@@ -111,11 +111,11 @@
 						<div class="schedule-time">
 							<p><?php echo date('H:i',strtotime($scheduleTime['time_start']))  ?> - <?php echo date('H:i',strtotime($scheduleTime['time_end']))  ?></p>
 						</div>
-						<div class="schedule-check">
+						<!-- <div class="schedule-check">
 							<div class="form-check form-switch">
 								<input class="form-check-input" type="checkbox" role="switch" <?php echo $scheduleTime['status'] == 'open' ? 'checked' : '' ?>>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				<?php } ?>
 			</div>

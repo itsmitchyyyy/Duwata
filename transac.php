@@ -7,6 +7,39 @@ $fetch = "SELECT * FROM users WHERE userid={$ID}";
 $result = mysqli_query($conn, $fetch);
 $row = mysqli_num_rows($result);
 
+
+$gymSql = "SELECT gym_id FROM gym WHERE userid = ".$ID;
+$gymResult = mysqli_query($conn, $gymSql);
+$gymRow = mysqli_fetch_assoc($gymResult);
+
+if (isset($gymRow)) {
+  $scheduleSql = "SELECT id FROM schedule WHERE gym_id = ".$gymRow['gym_id']." ORDER BY id DESC";
+	$scheduleResult = mysqli_query($conn, $scheduleSql);
+	$scheduleRow = $scheduleResult->fetch_all(MYSQLI_ASSOC);
+}
+
+$scheduleIds = array_column($scheduleRow, 'id');
+
+if (count($scheduleIds) > 0) {
+  $scheduleTimeSql = "SELECT id FROM schedule_time WHERE schedule_id IN (".implode(",", $scheduleIds).")";
+  $scheduleTimeResult = mysqli_query($conn, $scheduleTimeSql);
+  $scheduleTimeRow = $scheduleTimeResult->fetch_all(MYSQLI_ASSOC);
+}
+
+$scheduleTimeIds = array_column($scheduleTimeRow, 'id');
+
+$transactionRow = [];
+if (count($scheduleTimeIds) > 0) {
+  $transactionSql = "SELECT t.id as transactionId, t.status as tStatus, t.createdAt as tCreatedAt, t.*, bs.*, p.*, st.* FROM transactions t 
+    JOIN booking_schedule bs ON bs.id = t.booking_schedule_id 
+    JOIN players p ON p.playerID = bs.playerID
+    JOIN schedule_time st ON st.id = bs.schedule_time_id
+    WHERE bs.schedule_time_id IN (".implode(",", $scheduleTimeIds).")";
+  $transactionResult = mysqli_query($conn, $transactionSql);
+  $transactionRow = $transactionResult->fetch_all(MYSQLI_ASSOC);
+}
+
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -42,14 +75,16 @@ $row = mysqli_num_rows($result);
               <th>Amount</th>
               <th>Status</th>
             </tr>
-            <tr>
-              <td>04/03/23</td>
-              <td>10:00AM - 12:00PM</td>
-              <td>John Miecho C. Arnad</td>
-              <td>Gcash</td>
-              <td>5,000</td>
-              <td>Paid</td>
-            </tr>
+           <?php foreach($transactionRow as $row) { ?>
+              <tr>
+                <td><?php echo date('m/d/Y', strtotime($row['tCreatedAt'])) ?></td>
+                <td><?php echo date('h:i A',strtotime($row['time_start']))  ?> - <?php echo date('h:i A',strtotime($row['time_end'])) ?></td>
+                <td><?php echo ucfirst($row['player_firstname']).' '.ucfirst($row['player_middlename']).' '.ucfirst($row['player_lastname']) ?></td>
+                <td><?php echo ucfirst($row['payment_mode']) ?></td>
+                <td><?php echo $row['amount'] ?></td>
+                <td><?php echo ucfirst($row['tStatus']) ?></td>
+              </tr>
+          <?php } ?>
       </table>
       </div>
     </div>
