@@ -7,7 +7,7 @@ $fetch = "SELECT * FROM users WHERE userid={$ID}";
 $result = mysqli_query($conn, $fetch);
 $row = mysqli_num_rows($result);
 
-$notificationSql = "SELECT * FROM notifications ORDER BY id DESC";
+$notificationSql = "SELECT * FROM notifications ORDER BY createdAt DESC";
 $notificationResult = mysqli_query($conn, $notificationSql);
 $notificationRow = $notificationResult->fetch_all(MYSQLI_ASSOC);
 
