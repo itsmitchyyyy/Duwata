@@ -93,7 +93,7 @@
       <div class="edit-profile row">
         <div class="col">
 		<br style="line-height:2">
-		<a href="manageGymInfo.php?userid=<?php echo $_GET['userid'] ?>"><i class="bi bi-arrow-left"></i></a>
+		<a href="manageGymInfo.php?userid=<?php echo $_GET['userid'] ?>&gym_id=<?php echo $gymID ?>"><i class="bi bi-arrow-left"></i></a>
 		<br><br style="line-height:1">
 			<center>
 			<h2 class="bookingTime">Manage Booking<br> Time</h2>
@@ -111,11 +111,12 @@
 						<div class="schedule-time">
 							<p><?php echo date('H:i',strtotime($scheduleTime['time_start']))  ?> - <?php echo date('H:i',strtotime($scheduleTime['time_end']))  ?></p>
 						</div>
-						<!-- <div class="schedule-check">
+						<div class="schedule-check">
 							<div class="form-check form-switch">
-								<input class="form-check-input" type="checkbox" role="switch" <?php echo $scheduleTime['status'] == 'open' ? 'checked' : '' ?>>
+								<?php echo ucfirst($scheduleTime['status']) ?>
+								<!-- <input class="form-check-input" type="checkbox" role="switch" <?php echo $scheduleTime['status'] == 'open' ? 'checked' : '' ?>> -->
 							</div>
-						</div> -->
+						</div>
 					</div>
 				<?php } ?>
 			</div>
