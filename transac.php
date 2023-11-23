@@ -5,31 +5,36 @@ require('dbconn.php');
 $ID = $_GET['userid'];
 $fetch = "SELECT * FROM users WHERE userid={$ID}";
 $result = mysqli_query($conn, $fetch);
-$row = mysqli_num_rows($result);
+$row = $result->fetch_all(MYSQLI_ASSOC);
 
+$gymIds = [];
+if (isset($row)) {
+  $gymSql = "SELECT gym_id FROM gym WHERE userid = ".$ID;
+  $gymResult = mysqli_query($conn, $gymSql);
+  $gymRow = $gymResult->fetch_all(MYSQLI_ASSOC);
+}
 
-$gymSql = "SELECT gym_id FROM gym WHERE userid = ".$ID;
-$gymResult = mysqli_query($conn, $gymSql);
-$gymRow = mysqli_fetch_assoc($gymResult);
+$gymIds = array_column($gymRow, 'gym_id');
 
 if (isset($gymRow)) {
-  $scheduleSql = "SELECT id FROM schedule WHERE gym_id = ".$gymRow['gym_id']." ORDER BY id DESC";
+  $scheduleSql = "SELECT id FROM schedule WHERE gym_id IN (".implode(",", $gymIds).")";
 	$scheduleResult = mysqli_query($conn, $scheduleSql);
 	$scheduleRow = $scheduleResult->fetch_all(MYSQLI_ASSOC);
 }
-
 $scheduleIds = array_column($scheduleRow, 'id');
 
+$scheduleTimeRow = [];
 if (count($scheduleIds) > 0) {
   $scheduleTimeSql = "SELECT id FROM schedule_time WHERE schedule_id IN (".implode(",", $scheduleIds).")";
   $scheduleTimeResult = mysqli_query($conn, $scheduleTimeSql);
   $scheduleTimeRow = $scheduleTimeResult->fetch_all(MYSQLI_ASSOC);
 }
 
-$scheduleTimeIds = array_column($scheduleTimeRow, 'id');
+$scheduleTimeIds =  array_column($scheduleTimeRow, 'id');
 
 $transactionRow = [];
 if (count($scheduleTimeIds) > 0) {
+
   $transactionSql = "SELECT t.id as transactionId, t.status as tStatus, t.createdAt as tCreatedAt, t.*, bs.*, p.*, st.* FROM transactions t 
     JOIN booking_schedule bs ON bs.id = t.booking_schedule_id 
     JOIN players p ON p.playerID = bs.playerID
