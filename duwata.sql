@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 11:14 AM
+-- Generation Time: Nov 23, 2023 at 11:26 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -94,7 +94,8 @@ CREATE TABLE `booking_schedule` (
 --
 
 INSERT INTO `booking_schedule` (`id`, `schedule_time_id`, `playerId`) VALUES
-(18, 12, 1);
+(21, 18, 1),
+(22, 17, 1);
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,11 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `playerId`, `message`, `createdAt`) VALUES
-(7, 1, 'jhayson auxtero navaja has added a booking', '2023-11-21 04:14:54');
+(7, 1, 'jhayson auxtero navaja has added a booking', '2023-11-21 04:14:54'),
+(8, 1, 'jhayson auxtero navaja has added a booking', '2023-11-21 10:55:34'),
+(9, 1, 'jhayson auxtero navaja has added a booking', '2023-11-23 08:00:40'),
+(10, 1, 'jhayson auxtero navaja has added a booking', '2023-11-23 08:05:49'),
+(11, 1, 'jhayson auxtero navaja has added a booking', '2023-11-23 08:06:11');
 
 -- --------------------------------------------------------
 
@@ -180,6 +185,7 @@ INSERT INTO `players` (`playerID`, `player_firstname`, `player_middlename`, `pla
 
 CREATE TABLE `schedule` (
   `id` int(11) NOT NULL,
+  `gym_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `status` enum('booked','done','open','') NOT NULL DEFAULT 'open'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -188,11 +194,9 @@ CREATE TABLE `schedule` (
 -- Dumping data for table `schedule`
 --
 
-INSERT INTO `schedule` (`id`, `date`, `status`) VALUES
-(1, '2023-11-18', 'open'),
-(2, '2023-11-20', 'open'),
-(3, '2023-11-21', 'open'),
-(4, '2023-11-22', 'open');
+INSERT INTO `schedule` (`id`, `gym_id`, `date`, `status`) VALUES
+(5, 26, '2023-11-21', 'open'),
+(6, 26, '2023-11-23', 'open');
 
 -- --------------------------------------------------------
 
@@ -213,14 +217,11 @@ CREATE TABLE `schedule_time` (
 --
 
 INSERT INTO `schedule_time` (`id`, `schedule_id`, `time_start`, `time_end`, `status`) VALUES
-(1, 2, '06:00:00', '10:00:00', 'booked'),
-(2, 2, '11:00:00', '14:00:00', 'open'),
-(3, 2, '15:00:00', '18:00:00', 'open'),
-(4, 2, '18:00:00', '20:00:00', 'open'),
-(5, 2, '20:00:00', '21:00:00', 'open'),
-(12, 3, '06:00:00', '08:00:00', 'booked'),
-(13, 3, '09:00:00', '12:00:00', 'open'),
-(14, 4, '07:00:00', '11:00:00', 'open');
+(15, 5, '06:00:00', '14:00:00', 'open'),
+(16, 5, '07:00:00', '10:00:00', 'open'),
+(17, 6, '06:00:00', '10:00:00', 'booked'),
+(18, 6, '06:00:00', '16:00:00', 'booked'),
+(19, 6, '12:00:00', '19:00:00', 'open');
 
 -- --------------------------------------------------------
 
@@ -242,6 +243,30 @@ INSERT INTO `sports` (`sportID`, `sport_name`) VALUES
 (2, 'Volleyball'),
 (3, 'Badminton'),
 (4, 'Tennis');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id` int(11) NOT NULL,
+  `payment_mode` enum('visa','mastercard','gcash','cash') NOT NULL,
+  `amount` int(11) NOT NULL,
+  `booking_schedule_id` int(11) NOT NULL,
+  `status` enum('paid','pending') NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `gcash_no` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `payment_mode`, `amount`, `booking_schedule_id`, `status`, `createdAt`, `gcash_no`) VALUES
+(1, 'gcash', 123, 21, 'paid', '2023-11-23 08:05:49', '09123456789'),
+(2, 'cash', 100, 22, 'pending', '2023-11-23 08:06:11', '');
 
 -- --------------------------------------------------------
 
@@ -342,6 +367,12 @@ ALTER TABLE `sports`
   ADD PRIMARY KEY (`sportID`);
 
 --
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -373,7 +404,7 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT for table `booking_schedule`
 --
 ALTER TABLE `booking_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `gym`
@@ -385,7 +416,7 @@ ALTER TABLE `gym`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `players`
@@ -397,19 +428,25 @@ ALTER TABLE `players`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `schedule_time`
 --
 ALTER TABLE `schedule_time`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `sports`
 --
 ALTER TABLE `sports`
   MODIFY `sportID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
